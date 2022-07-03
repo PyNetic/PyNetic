@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "pynetic"
+version = "0.1.0"
+description = "Todo"
+authors = ["Jabbey92 <92jbach@gmail.com>"]
+
+[tool.poetry.dependencies]
+
+# Python Version
+python = ">=3.7"
+
+# Required Libraries
+multipledispatch = "^0.6.0"
+pydantic = "^1.9.1"
+starlette = "^0.20.3"
+
+# Extras
+pandas = { version = "*", optional = true }
+numpy = { version = "*", optional = true }
+orjson = { version = ">=3.2.1,<4.0.0", optional = true }
+ujson = { version = ">=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0", optional = true }
+
+# Documentation
+mkdocs = { version = "^1.3.0", optional = true }
+mkdocs-material = { version = ">=8.1.4,<9.0.0", optional = true }
+
+[tool.poetry.dev-dependencies]
+
+# Developer Dependencies
+tox = "^3.18"
+pytest = "^7.1"
+pytest-mock = "^3.5"
+pytest-asyncio = "^0.18.3"
+black = {version = "^22.3.0", allow-prereleases = true}
+
+[tool.poetry.extras]
+
+# Extra Dependencies
+pandas = [ "pandas" ]
+numpy = [ "numpy" ]
+orjson = [ "orjson" ]
+ujson = [ "ujson" ]
+
+# Documentation
+docs = [ "mkdocs", "mkdocs-material" ]
+
+# Testing
+test = [ "tox", "pytest", "pytest-mock", "pytest-asyncio" ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
