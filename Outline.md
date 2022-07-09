@@ -19,23 +19,20 @@ site-name
 ## 📊Lifecycle Diagram
 
 ```mermaid
-flowchart TB
-  subgraph two [Components]
-  C(Component)
-  C ==> R{{on_render}}
-  R ==> M{{on_mount}}
-  R ==> U{{on_unmount}}
-
-  end
-  subgraph three [ ]
-  V(("Variables (x)"))
-  end
-  subgraph one [page]
-  P[Page]
-  V <--> P
-  P ==> C
-  C <--> V
-  end
+    flowchart
+        subgraph x [ ]
+        C ==> R{{on_render}}
+        R ==> M{{on_mount}}
+        R ==> U{{on_unmount}}
+        P[Page]
+        C(Component)
+        end
+        V <-.-> C & P
+        V(("Variables (x)"))
+        S[session]
+        P ==> C
+        S---V 
+        S --- P
 ```
 
 ## 🤔Things to know
