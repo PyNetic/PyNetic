@@ -19,21 +19,31 @@ site-name
 ## 📊Lifecycle Diagram
 
 ```mermaid
-    flowchart
-        subgraph x [ ]
-        C ==> R{{on_render}}
-        R ==> M{{on_mount}}
-        R ==> U{{on_unmount}}
-        P[Page]
-        C(Component)
+    flowchart TD
+        subgraph z [ ]
+        S[fa:fa-globe Session]
         end
-        V <-.-> C & P
-        V(("Variables (x)"))
-        S[session]
-        P ==> C
-        S---V 
-        S --- P
-```
+        S -.-> V & CO
+        subgraph x [ ]
+        P[fa:fa-file Page]
+        C(fa:fa-box-open Component)
+        C ==> R{{on_render}}
+        subgraph xx [ ]
+        subgraph xy [ ]
+        BM{{before_mount}}
+        BM -.-> AM{{after_mount}}
+        end
+        subgraph xz [ ]
+        BU{{before_unmount}}
+        BU -.-> AU{{after_mount}}
+        end
+        R ==> BM & BU
+        end
+        end
+        V[[fa:fa-code Variables]]
+        CO[[fa:fa-coins Collections]]
+        V & CO <-.-> P
+        P ==> C```
 
 ## 🤔Things to know
 1. HTML `class`'es and `id`'s will be managed and assigned by pynetic as needed.
