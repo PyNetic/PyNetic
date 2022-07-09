@@ -68,11 +68,10 @@ site-name
 
 ### `index.py`
 ```Python
-from pynetic import Page
+from pynetic import Page, h1
 from card import card
 
-# notice same name as filename
-# this will be what is rendered
+# notice this is the same name as the filename. this will be what is rendered
 index = Page(
     h1("Welcome to my page"),
     card,
@@ -82,7 +81,7 @@ index = Page(
 ### `card.py`
 
 ```Python
-from pynetic.html import div, span, form, label, b, p, button, Input
+from pynetic.html import Component, div, span, form, label, b, p, button, input_
 
 with Context():
   username: str = "John"
@@ -110,7 +109,7 @@ card = Component(
         span(username, "",),
         form(
             label("Gimme ur info"),
-            Input(
+            input_(
                 "First Name",
                 on_change=is_email_valid,
             ),
