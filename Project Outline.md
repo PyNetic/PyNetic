@@ -45,17 +45,11 @@ site-name
         subgraph x [ ]
         P[fa:fa-file Page]
         C(fa:fa-box-open Component)
-        C ==> R{{on_render}}
         subgraph xx [ ]
-        subgraph xy [ ]
-        BM{{before_mount}}
-        BM -.-> AM{{after_mount}}
-        end
-        subgraph xz [ ]
-        BU{{before_unmount}}
-        BU -.-> AU{{after_mount}}
-        end
-        R ==> BM & BU
+        C ==> R{{on_render}}
+        M{{on_mount}}
+        U{{on_unmount}}
+        R ==> M & U
         end
         end
         V[[fa:fa-code Variables]]
