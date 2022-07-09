@@ -22,9 +22,10 @@ site-name
 flowchart TB
   subgraph two [Components]
   C(Component)
-  C ==> M{{on_mount}}
   C ==> R{{on_render}}
-  C ==> U{{on_unmount}}
+  R ==> M{{on_mount}}
+  R ==> U{{on_unmount}}
+
   end
   subgraph three [ ]
   V(("Variables (x)"))
