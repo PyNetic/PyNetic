@@ -104,7 +104,6 @@ card = Component(
         form(
             label("Gimme ur info"),
             input_(
-                "First Name",
                 on_change=is_email_valid,
             ),
             button("Submit", on_click=submit_form),
