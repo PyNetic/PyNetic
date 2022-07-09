@@ -18,7 +18,6 @@ async def test_element_content():
 async def test_element_class():
     assert await div.foo()._render_as_html() == '<div class="foo"></div>'
 
-
 @pytest.mark.asyncio
 async def test_element_multiple_class():
     assert await div.foo.bar()._render_as_html() == '<div class="foo bar"></div>'
