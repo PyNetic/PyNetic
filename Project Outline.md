@@ -1,9 +1,27 @@
 # ‼️Note
 This is a work in progress, and as the project matures this file is subject to change.
 
-This outlines the structure of pynetic and it's intended usage.
+## 🤔Things to know
+- __HTML `class`'es and `id`'s will be managed and assigned by pynetic as needed.__
+  - This can be done manually as well but is not needed. **This is useful if you're using a css framework (ex: tailwind)**
+  - **Cases where a class will be added to a tag**
+    - Any time a style is assigned to an element
+    - Any time there is an event assigned to an element
+
+- __Variables (aka: `state`'s in react) are automatically bound to the session__
+  - Variables must have distinct names from any other name in the project as they are assigned the name they are given on instantiation
+  - Variables are bound using `Context` context-manager
+    - Can be accessed from any page component using import statements
+    - Can be used at any time during the session
+
+- __Collections are similiar to stores in Svelte.__
+  - At their core they are a list of objects
+  - They can also be subclassed to interact with a backend or API
+  - All possible HTML and CSS is dynamically created at Render stage
+  - Whatever cannot be rendered will be rendered client side during on_mount
 
 ## 🗄️File structure (example)
+This outlines the structure of pynetic and it's intended usage.
 
 ```
 site-name
@@ -43,22 +61,8 @@ site-name
         V[[fa:fa-code Variables]]
         CO[[fa:fa-coins Collections]]
         V & CO <-.-> P
-        P ==> C```
-
-## 🤔Things to know
-1. HTML `class`'es and `id`'s will be managed and assigned by pynetic as needed.
-  - This can be done manually as well but is not needed. [This is useful if you're using a css framework (ex: tailwind)]
-  - __**Cases where a class will be added to a tag**__
-      - Any time a style is assigned to an element
-      - Any time there is an event assigned to an element
-      - ...
-2. Variables (aka: `state`'s in react) are automatically bound to the session
-  - Variables are bound using `Context` context-manager
-  - Variables can be accessed from the page or other components using import statements
-  - Variables can be used at any time during the session
-  - Variables must have distinct names from any other name in the project as they are assigned the name they are given on instantiation
-3. All possible HTML and CSS is dynamically created at Render stage
-  - Whatever cannot be rendered will be rendered client side during on_mount
+        P ==> C
+```
 
 ## 💻Example Code:
 
@@ -112,7 +116,7 @@ card = Component(
             ),
             button("Submit", on_click=submit_form),
         ),
-        custom_div, # named div tag defined outside the Component
+        custom_div, # div tag defined outside the Component
         div(
             "The",
             b(p("blue").style(color="car")), # this style will be automatically managed by pynetic
