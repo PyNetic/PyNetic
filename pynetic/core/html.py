@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, Iterable, List, Sequence, Type, Union, cast
-
-from events import Event
+from typing import Any, Callable, Dict, Iterable, List, Sequence, Type, TypeVar, Union, cast
 
 __all__ = (
     "HTMLElement",
@@ -139,11 +137,17 @@ class HTMLElement:
         *children: str | "HTMLElement",
         classes: str | Iterable[str] | None = None,
         id: str | None = None,
-        **kwargs: str | Event,
+        on_mount: Callable | None = None,
+        on_unmount: Callable | None = None,
+        on_render: Callable | None = None,
+        **kwargs: str | Callable,
     ) -> None:
         self._children = list(children)
         self._id = id
         self._styles = {}
+        self._on_mount = on_mount
+        self._on_unmount = on_unmount
+        self._on_render = on_render
 
         self._named_children = {
             child_name: child_value
@@ -154,7 +158,7 @@ class HTMLElement:
         self._events = {
             event_name: event_function
             for event_name, event_function in kwargs.items()
-            if isinstance(event_function, Event)
+            if isinstance(event_function, Callable)
         }
 
         if classes is None:
