@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, Iterable, List, Sequence, Type, TypeVar, Union, cast
+from typing import Callable, Iterable, Type
 
 __all__ = (
     "HTMLElement",
@@ -73,7 +73,7 @@ __all__ = (
     "area",
     "audio",
     "img",
-    "map",
+    "map_",
     "track",
     "video",
     "embed",
@@ -87,7 +87,7 @@ __all__ = (
     "canvas",
     "noscript",
     "script",
-    "Del",
+    "del_",
     "ins",
     "caption",
     "col",
@@ -103,7 +103,7 @@ __all__ = (
     "datalist",
     "fieldset",
     "form",
-    "input",
+    "input_",
     "label",
     "legend",
     "meter",
@@ -564,7 +564,7 @@ audio = define_element(
     "suitable one. It can also be the destination for streamed media, using a MediaStream.",
 )
 img = define_element("img", "Embeds an image into the document.")
-map = define_element(
+map_ = define_element(
     "map", "Is used with area elements to define an image map (a clickable link area)."
 )
 track = define_element(
@@ -641,7 +641,7 @@ script = define_element(
     "JavaScript code. The <script> element can also be used with other languages, such as WebGL's "
     "GLSL shader programming language and JSON.",
 )
-Del = define_element(
+del_ = define_element(
     "del",
     "Represents a range of text that has been deleted from a document. "
     'This can be used when rendering "track changes" or source code diff information, for example. '
@@ -706,7 +706,7 @@ form = define_element(
     "form",
     "Represents a document section containing interactive controls for submitting information.",
 )
-input = define_element(
+input_ = define_element(
     "input",
     "Is used to create interactive controls for web-based forms in order to accept data from the "
     "user; a wide variety of types of input data and control widgets are available, depending on "
