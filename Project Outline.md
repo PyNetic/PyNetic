@@ -8,9 +8,9 @@ This is a work in progress, and as the project matures this file is subject to c
     - Any time a style is assigned to an element
     - Any time there is an event assigned to an element
 
-- __Variables (aka: `state`'s in react) are automatically bound to the session__
-  - Variables must have distinct names from any other name in the project as they are assigned the name they are given on instantiation
-  - Variables are bound using `Context` context-manager
+- __References (aka: `state`'s in react) are automatically bound to the session__
+  - References must have distinct names from any other name in the project as they are assigned the name they are given on instantiation
+  - References are bound using `MakeReference` context-manager
     - Can be accessed from any page component using import statements
     - Can be used at any time during the session
 
@@ -52,7 +52,7 @@ site-name
         R ==> M & U
         end
         end
-        V[[fa:fa-code Variables]]
+        V[[fa:fa-code Reference(s)]]
         CO[[fa:fa-coins Collections]]
         V & CO <-.-> P
         P ==> C
@@ -75,9 +75,10 @@ index = Page(
 ### `card.py`
 
 ```Python
+from pynetic import MakeReference
 from pynetic.html import Component, div, span, form, label, b, p, button, input_
 
-with Context():
+with MakeContext():
   username: str = "John"
 
 def is_email_valid(element):
