@@ -13,6 +13,7 @@ python = ">=3.7"
 multipledispatch = "^0.6.0"
 pydantic = "^1.9.1"
 starlette = "^0.20.3"
+uvicorn = ">=0.18.0"
 
 # Extras
 pandas = { version = "*", optional = true }
@@ -34,12 +35,6 @@ pytest-asyncio = "^0.18.3"
 black = {version = "^22.3.0", allow-prereleases = true}
 
 [tool.poetry.extras]
-
-# Extra Dependencies
-pandas = [ "pandas" ]
-numpy = [ "numpy" ]
-orjson = [ "orjson" ]
-ujson = [ "ujson" ]
 
 # Documentation
 docs = [ "mkdocs", "mkdocs-material" ]
