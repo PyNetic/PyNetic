@@ -16,7 +16,9 @@ from any page component using import statements
 """
 
 
-from typing import Any, Generic, TypeVar, ParamSpec, TypeVar
+from typing import Any, Generic, TypeVar
+
+from .session import Session
 
 T = TypeVar("T", bound=Any)
 R = TypeVar("R")
@@ -121,7 +123,11 @@ class MakeReference:
         self.initial_vars = globals() | locals()
 
     def __exit__(self, exception_type, exception_value, exception_traceback) -> None:
-        for k, v in (globals()).items():
-            if k not in self.initial_vars:
-                # Add variable to Application
-                pass
+        for name, value in (globals()).items():
+            if name in self.initial_vars:
+                continue
+
+            if name in Session.references:
+                raise ValueError(f'Reference name: "{name}" already defined')
+
+            Session.references[name] = Reference(value)
