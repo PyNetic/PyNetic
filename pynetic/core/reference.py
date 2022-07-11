@@ -22,6 +22,7 @@ T = TypeVar("T", bound=Any)
 R = TypeVar("R")
 
 
+# :TODO: Finish implementing dunder methods. Unless there's an easier way to do this.
 class Reference(Generic[T], object):
     """Wrapper for a Variable
     This is not necessary to use. The suggested way to create a variable is
@@ -31,10 +32,10 @@ class Reference(Generic[T], object):
         var (Any): the variable being wrapped
     """
 
-    def __init__(self, name: str, var: T) -> None:
-        self._name = name
+    def __init__(self, var: T) -> None:
         self._var = var
 
+    # :TODO: correct the return type so it returns the correct type
     def __call__(self, *args, **kwargs) -> Any:
         self._var(*args, **kwargs)
         return self._var
@@ -72,8 +73,42 @@ class Reference(Generic[T], object):
     def __gt__(self, __other: T) -> bool:
         return self._var > __other
 
+    # :TODO: correct the return type so it returns the correct type
+    def __getattribute__(self, __name: str) -> Any:
+        return self._var.__getattribute__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __getattr__(self, __name: str) -> Any:
+        return self._var.__getattr__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __getitem__(self, __name: str) -> Any:
+        return self._var.__getitem__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __get__(self, __name: str) -> Any:
+        return self._var.__get__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __setitem__(self, __name: str) -> Any:
+        return self._var.__setitem__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __set__(self, __name: str) -> Any:
+        return self._var.__set__(__name)
+
+    # :TODO: correct the return type so it returns the correct type
+    def __delitem__(self, __name: str) -> Any:
+        return self._var.__delitem__(__name)
+
+    def __del__(self, __name: str) -> None:
+        del self
+
+    def __bool__(self) -> bool:
+        return bool(self._var)
+
     def __repr__(self) -> str:
-        return f"<Reference({self._name}: {T} = {repr(self._var)})"
+        return f"<Reference({self._name}: {self.__orig_class__.__args__[0]} = {repr(self._var)})"  # type: ignore
 
     def __str__(self) -> str:
         return str(self._var)
@@ -82,10 +117,11 @@ class Reference(Generic[T], object):
 class MakeReference:
     """Context manager used to assign variables to a project"""
 
-    __slots__ = "initial_vars", "vars"
-
     def __enter__(self):
         self.initial_vars = globals() | locals()
 
-    def __exit__(self) -> None:
-        self.vars = {k: v for k, v in globals() | locals() if k not in self.initial_vars}
+    def __exit__(self, exception_type, exception_value, exception_traceback) -> None:
+        for k, v in (globals()).items():
+            if k not in self.initial_vars:
+                # Add variable to Application
+                pass
