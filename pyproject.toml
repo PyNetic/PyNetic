@@ -12,8 +12,8 @@ python = ">=3.7"
 # Required Libraries
 multipledispatch = "^0.6.0"
 pydantic = "^1.9.1"
-starlette = "^0.20.3"
-uvicorn = ">=0.18.0"
+starlite = "^0.20.3"
+guvicorn = ">=0.18.0"
 
 # Extras
 pandas = { version = "*", optional = true }
