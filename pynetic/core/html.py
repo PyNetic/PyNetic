@@ -78,7 +78,7 @@ __all__ = (
     "video",
     "embed",
     "iframe",
-    "object",
+    "object_",
     "picture",
     "portal",
     "source",
@@ -590,7 +590,7 @@ iframe = define_element(
     "iframe",
     "Represents a nested browsing context, embedding another HTML page into the current one.",
 )
-object = define_element(
+object_ = define_element(
     "object",
     "Represents an external resource, which can be treated as an image, "
     "a nested browsing context, or a resource to be handled by a plugin.",
