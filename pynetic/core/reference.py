@@ -15,20 +15,20 @@ References can be accessed at any time during the session and
 from any page component using import statements
 """
 
-
+import sys
+from types import CodeType
 from typing import Any, Generic, TypeVar
 
-from .session import Session
+from .application import Application
 
 T = TypeVar("T", bound=Any)
-R = TypeVar("R")
 
 
 # :TODO: Finish implementing dunder methods. Unless there's an easier way to do this.
 class Reference(Generic[T], object):
     """Wrapper for a Variable
-    This is not necessary to use. The suggested way to create a variable is
-    using `Context` context manager
+    This is not necessary to use in development. The suggested way to create a variable is
+    using `MakeReference` context manager
 
     args:
         var (Any): the variable being wrapped
@@ -36,6 +36,16 @@ class Reference(Generic[T], object):
 
     def __init__(self, var: T) -> None:
         self._var = var
+        self._modification_checkpoints: list[tuple[str, CodeType]] = []
+
+    def _add_modification_checkpoint(self) -> None:
+        """When _var is modified, this function is called.
+        Adds the caller's code object to the `_modification_checkpoints` list so pynetic
+        knows the calling function is a reactive function.
+        """
+        self._modification_locations.append(
+            ((caller := self.self.sys._getframe(2).f_code).f_name, caller)
+        )
 
     # :TODO: correct the return type so it returns the correct type
     def __call__(self, *args, **kwargs) -> Any:
@@ -43,18 +53,43 @@ class Reference(Generic[T], object):
         return self._var
 
     def __add__(self, __other: T) -> None:
+        self._add_modification_checkpoint()
         return self._var + __other
 
     def __sub__(self, __other: T) -> None:
+        self._add_modification_checkpoint()
         return self._var - __other
 
     def __mul__(self, __other: T) -> None:
+        self._add_modification_checkpoint()
         return self._var * __other
 
     def __floordiv__(self, __other: T) -> None:
+        self._add_modification_checkpoint()
         return self._var // __other
 
     def __truediv__(self, __other: T) -> None:
+        self._add_modification_checkpoint()
+        return self._var / __other
+
+    def __iadd__(self, __other: T) -> "Reference":
+        self._add_modification_checkpoint()
+        return self._var + __other
+
+    def __isub__(self, __other: T) -> "Reference":
+        self._add_modification_checkpoint()
+        return self._var - __other
+
+    def __imul__(self, __other: T) -> "Reference":
+        self._add_modification_checkpoint()
+        return self._var * __other
+
+    def __ifloordiv__(self, __other: T) -> "Reference":
+        self._add_modification_checkpoint()
+        return self._var // __other
+
+    def __itruediv__(self, __other: T) -> "Reference":
+        self._add_modification_checkpoint()
         return self._var / __other
 
     def __lt__(self, __other: T) -> bool:
@@ -93,27 +128,28 @@ class Reference(Generic[T], object):
 
     # :TODO: correct the return type so it returns the correct type
     def __setitem__(self, __name: str) -> Any:
+        self._add_modification_checkpoint()
         return self._var.__setitem__(__name)
 
     # :TODO: correct the return type so it returns the correct type
     def __set__(self, __name: str) -> Any:
+        self._add_modification_checkpoint()
         return self._var.__set__(__name)
-
-    # :TODO: correct the return type so it returns the correct type
-    def __delitem__(self, __name: str) -> Any:
-        return self._var.__delitem__(__name)
-
-    def __del__(self, __name: str) -> None:
-        del self
 
     def __bool__(self) -> bool:
         return bool(self._var)
 
-    def __repr__(self) -> str:
-        return f"<Reference({self._name}: {self.__orig_class__.__args__[0]} = {repr(self._var)})"  # type: ignore
+    def __int__(self) -> str:
+        return str(self._var)
+
+    def __float__(self) -> str:
+        return str(self._var)
 
     def __str__(self) -> str:
         return str(self._var)
+
+    def __repr__(self) -> str:
+        return f"<Reference({self._name}: {self.__orig_class__.__args__[0]} = {repr(self._var)})"  # type: ignore
 
 
 class MakeReference:
@@ -127,7 +163,7 @@ class MakeReference:
             if name in self.initial_vars:
                 continue
 
-            if name in Session.references:
+            if name in Application.references:
                 raise ValueError(f'Reference name: "{name}" already defined')
 
-            Session.references[name] = Reference(value)
+            Application.references[name] = Reference(value)
