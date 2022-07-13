@@ -111,11 +111,14 @@ card = div(
         custom_div, # div tag defined outside the Component
         div(
             "The",
-            b(p("blue").style(color="car")), # this style will be automatically managed by pynetic
+            b(p("blue").style(color="car")),  # this style will be automatically managed by pynetic
         ),
         on_mount=when_mounted, # this will be caught by the component
 
     ).style(
-        position= "absolute"
+        # either this
+        position = "absolute"
+        # or this
+        position.absolute  # plan is to be able to use this syntax as well as defining css separately, including in another file
 )
 ```
