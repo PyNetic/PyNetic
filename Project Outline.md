@@ -100,7 +100,7 @@ custom_div = div(
 
 card = div(
         "Hi there ",
-        span(username, "",),
+        span(username, ""),
         form(
             label("Gimme ur info"),
             input_(
