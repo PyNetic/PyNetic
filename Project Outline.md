@@ -52,7 +52,7 @@ site-name
         R ==> M & U
         end
         end
-        V[[fa:fa-code Reference(s)]]
+        V[["fa:fa-code Reference(s)"]]
         CO[[fa:fa-coins Collections]]
         V & CO <-.-> P
         P ==> C
