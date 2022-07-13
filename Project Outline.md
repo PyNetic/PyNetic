@@ -52,7 +52,7 @@ site-name
         R ==> M & U
         end
         end
-        V[[fa:fa-code Reference(s)]]
+        V[["fa:fa-code Reference(s)"]]
         CO[[fa:fa-coins Collections]]
         V & CO <-.-> P
         P ==> C
@@ -78,7 +78,7 @@ index = Page(
 from pynetic import MakeReference
 from pynetic.html import Component, div, span, form, label, b, p, button, input_
 
-with MakeContext():
+with MakeReference():
   username: str = "John"
 
 def is_email_valid(element):
@@ -98,26 +98,27 @@ custom_div = div(
     background_color="green"
 )
 
-card = Component(
+card = div(
+    "Hi there ",
+    span(username, ""),
+    form(
+        label("Gimme ur info"),
+        input_(
+            on_change=is_email_valid,
+        ),
+        button("Submit", on_click=submit_form),
+    ),
+    custom_div, # div tag defined outside the Component
     div(
-        "Hi there ",
-        span(username, "",),
-        form(
-            label("Gimme ur info"),
-            input_(
-                on_change=is_email_valid,
-            ),
-            button("Submit", on_click=submit_form),
-        ),
-        custom_div, # div tag defined outside the Component
-        div(
-            "The",
-            b(p("blue").style(color="car")), # this style will be automatically managed by pynetic
-        ),
-        on_mount=when_mounted, # this will be caught by the component
+        "The",
+        b(p("blue").style(color="car")),  # this style will be automatically managed by pynetic
+    ),
+    on_mount=when_mounted, # this will be caught by the component
 
-    ).style(
-        position= "absolute"
-    )
+).style(
+    # either this
+    position = "absolute"
+    # or this
+    position.absolute  # plan is to be able to use this syntax as well as defining css separately, including in another file
 )
 ```
