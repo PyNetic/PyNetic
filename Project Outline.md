@@ -99,26 +99,26 @@ custom_div = div(
 )
 
 card = div(
-        "Hi there ",
-        span(username, ""),
-        form(
-            label("Gimme ur info"),
-            input_(
-                on_change=is_email_valid,
-            ),
-            button("Submit", on_click=submit_form),
+    "Hi there ",
+    span(username, ""),
+    form(
+        label("Gimme ur info"),
+        input_(
+            on_change=is_email_valid,
         ),
-        custom_div, # div tag defined outside the Component
-        div(
-            "The",
-            b(p("blue").style(color="car")),  # this style will be automatically managed by pynetic
-        ),
-        on_mount=when_mounted, # this will be caught by the component
+        button("Submit", on_click=submit_form),
+    ),
+    custom_div, # div tag defined outside the Component
+    div(
+        "The",
+        b(p("blue").style(color="car")),  # this style will be automatically managed by pynetic
+    ),
+    on_mount=when_mounted, # this will be caught by the component
 
-    ).style(
-        # either this
-        position = "absolute"
-        # or this
-        position.absolute  # plan is to be able to use this syntax as well as defining css separately, including in another file
+).style(
+    # either this
+    position = "absolute"
+    # or this
+    position.absolute  # plan is to be able to use this syntax as well as defining css separately, including in another file
 )
 ```
