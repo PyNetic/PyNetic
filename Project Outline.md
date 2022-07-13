@@ -78,7 +78,7 @@ index = Page(
 from pynetic import MakeReference
 from pynetic.html import Component, div, span, form, label, b, p, button, input_
 
-with MakeContext():
+with MakeReference():
   username: str = "John"
 
 def is_email_valid(element):
@@ -98,8 +98,7 @@ custom_div = div(
     background_color="green"
 )
 
-card = Component(
-    div(
+card = div(
         "Hi there ",
         span(username, "",),
         form(
@@ -118,6 +117,5 @@ card = Component(
 
     ).style(
         position= "absolute"
-    )
 )
 ```
