@@ -4,7 +4,9 @@ HTML tags act as components and as page elements depending upon use and location
 """
 
 from __future__ import annotations
+from lxml.html import builder as HTMLBuilder
 from operator import methodcaller
+from styles import Style 
 
 from typing import Callable, Iterable, Type
 
@@ -28,29 +30,28 @@ class HTMLElement:
         *children: str | "HTMLElement",
         classes: str | Iterable[str] | None = None,
         id: str | None = None,
-        on_mount: Callable | None = None,
-        on_unmount: Callable | None = None,
-        on_render: Callable | None = None,
         **kwargs: str | Callable,
     ) -> None:
+        self._content: str = ""
+        self._named_children: dict[str, str] = {}
+        self._events: dict[str, Callable] = {}
+        self.elements: list[HTMLElement] = 
         
+        for name, value in kwargs.items():
+            if isinstance(value, str):
+                self._named_children[name] value
+            
+            if isinstance(event_function, Callable):
+                self._events[event_name] = event_function
+        
+        for child in children:
+            if isinstance(child, str)) and self._content == "":
+                self._content = child
+            
+            if isinstance(child, (HTMLElement, Style)):
+                
 
-        self._named_children = {
-            child_name: child_value
-            for child_name, child_value in kwargs.items()
-            if isinstance(child_value, str)
-        }
-
-        self._events = {
-            event_name: event_function
-            for event_name, event_function in kwargs.items()
-            if isinstance(event_function, Callable)
-        }
-
-        if classes is None:
-            return
-
-        self._classes = (
+        self._classes = classes or [] or (
             [classes.replace("_", "-")]
             if isinstance(classes, str)
             else [_class.replace("_", "-") for _class in classes]
@@ -64,6 +65,18 @@ class HTMLElement:
         """
         self._styles.update(kwargs)
         return self
+    
+    def render(self) -> tuple[str, dict[str, str], str]:
+        """_summary_
+        Args:
+            minified (bool):
+                If True, minifies elements when rendering, otherwise returns human readable syntax.
+        Returns:
+            tuple[str, dict[str, str], str]: tuple of rendered (html, css, js)
+        """
+        rendered_html = getattr(HTMLBuilder, self._tag.upper())(self, *(
+            child.render() for child in self._children if isinstance(child, (HTMLElement, Style))
+        )
 
 
 def define_element(tag: str, docstring: str, is_self_closing: bool = False) -> Type["HTMLElement"]:
