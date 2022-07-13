@@ -1,6 +1,10 @@
-"""HTML tag elements"""
+"""pynetic HTML builtins
+
+HTML tags act as components and as page elements depending upon use and location. TBC...
+"""
 
 from __future__ import annotations
+from operator import methodcaller
 
 from typing import Callable, Iterable, Type
 
@@ -16,6 +20,9 @@ class HTMLElement:
         id (str): Custom HTML id to use in rendered HTML
     """
 
+    _tag: str = "html"
+    _self_closing: bool = False
+
     def __init__(
         self,
         *children: str | "HTMLElement",
@@ -26,12 +33,7 @@ class HTMLElement:
         on_render: Callable | None = None,
         **kwargs: str | Callable,
     ) -> None:
-        self._children = list(children)
-        self._id = id
-        self._styles = {}
-        self._on_mount = on_mount
-        self._on_unmount = on_unmount
-        self._on_render = on_render
+        
 
         self._named_children = {
             child_name: child_value

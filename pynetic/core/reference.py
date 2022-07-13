@@ -24,7 +24,7 @@ from .application import Application
 T = TypeVar("T", bound=Any)
 
 
-# :TODO: Finish implementing dunder methods. Unless there's an easier way to do this.
+# :TODO Finish implementing dunder methods. Unless there's an easier way to do this.
 class Reference(Generic[T], object):
     """Wrapper for a Variable
     This is not necessary to use in development. The suggested way to create a variable is
@@ -43,11 +43,11 @@ class Reference(Generic[T], object):
         Adds the caller's code object to the `_modification_checkpoints` list so pynetic
         knows the calling function is a reactive function.
         """
-        self._modification_locations.append(
+        self._modification_checkpoints.append(
             ((caller := self.self.sys._getframe(2).f_code).f_name, caller)
         )
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __call__(self, *args, **kwargs) -> Any:
         self._var(*args, **kwargs)
         return self._var
@@ -110,28 +110,28 @@ class Reference(Generic[T], object):
     def __gt__(self, __other: T) -> bool:
         return self._var > __other
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __getattribute__(self, __name: str) -> Any:
         return self._var.__getattribute__(__name)
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __getattr__(self, __name: str) -> Any:
         return self._var.__getattr__(__name)
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __getitem__(self, __name: str) -> Any:
         return self._var.__getitem__(__name)
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __get__(self, __name: str) -> Any:
         return self._var.__get__(__name)
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __setitem__(self, __name: str) -> Any:
         self._add_modification_checkpoint()
         return self._var.__setitem__(__name)
 
-    # :TODO: correct the return type so it returns the correct type
+    # :TODO correct the return type so it returns the correct type
     def __set__(self, __name: str) -> Any:
         self._add_modification_checkpoint()
         return self._var.__set__(__name)
