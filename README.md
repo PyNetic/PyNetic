@@ -1,3 +1,7 @@
+<a href="https://github.com/Jabbey92/pynetic" align="center">
+  <img src="https://p.kindpng.com/picc/s/713-7136196_python-logo-clipart-python-head-programming-python-png.png" align="center">
+</a>
+
 # 💻 pynetic project is currently in **development** ‼️
 
 #### 📚 Please refer to the Project Outline for information on the project.
