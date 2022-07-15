@@ -7,8 +7,7 @@ from pathlib import Path
 from types import FunctionType, ModuleType
 from typing import AsyncGenerator, cast
 
-from ..core.page import Page
-from ..core import Session, Reference
+from ..core import Application, Reference
 from ..core.html import HTMLElement
 
 current_working_directory = Path("./routes/")

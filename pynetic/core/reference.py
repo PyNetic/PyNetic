@@ -25,6 +25,8 @@ T = TypeVar("T", bound=Any)
 
 
 # :TODO Finish implementing dunder methods. Unless there's an easier way to do this.
+
+
 class Reference(Generic[T], object):
     """Wrapper for a Variable
     This is not necessary to use in development. The suggested way to create a variable is
@@ -36,16 +38,15 @@ class Reference(Generic[T], object):
 
     def __init__(self, var: T) -> None:
         self._var = var
-        self._modification_checkpoints: list[tuple[str, CodeType]] = []
+        self._modification_checkpoints: dict[str, CodeType] = {}
 
-    def _add_modification_checkpoint(self) -> None:
+    def _propagate_modification_checkpoint(self) -> None:
         """When _var is modified, this function is called.
         Adds the caller's code object to the `_modification_checkpoints` list so pynetic
         knows the calling function is a reactive function.
         """
-        self._modification_checkpoints.append(
-            ((caller := self.self.sys._getframe(2).f_code).f_name, caller)
-        )
+        caller = self.self.sys._getframe(2).f_code
+        self._modification_checkpoints[caller.f_name] = caller
 
     # :TODO correct the return type so it returns the correct type
     def __call__(self, *args, **kwargs) -> Any:

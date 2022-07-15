@@ -5,15 +5,32 @@ This is just the listing from the mozilla docs for right now.
 :ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
 """
 
+from __future__ import annotations
+from functools import partial
 from os import PathLike
-from pathlib import Path
-from typing import NoReturn, overload
+from typing import Any, overload
 
-#:TODO Implement `style` functionality
-class CSSElement:
-    """Base css property/element"""
+from cssutils import css
 
-    pass
+
+def add_suffix(suffix: str | int | float, prefix: str):
+    return f"{prefix}{suffix}"
+
+
+px = partial(add_suffix, suffix="px")
+pt = partial(add_suffix, suffix="pt")
+pc = partial(add_suffix, suffix="pc")
+vw = partial(add_suffix, suffix="vw")
+vh = partial(add_suffix, suffix="vh")
+cm = partial(add_suffix, suffix="cm")
+mm = partial(add_suffix, suffix="mm")
+ex = partial(add_suffix, suffix="VW")
+ch = partial(add_suffix, suffix="ch")
+em = partial(add_suffix, suffix="em")
+rem = partial(add_suffix, suffix="rem")
+vmin = partial(add_suffix, suffix="vmin")
+vmax = partial(add_suffix, suffix="vmax")
+percent = partial(add_suffix, suffix="%")
 
 
 class Style:
@@ -25,7 +42,10 @@ class Style:
         css (str | PathLike | CSSElement):
     """
 
-    def __init__(self, css: str | PathLike | CSSElement) -> None:
+    def __init__(self, css: dict[Any, Any] | str | PathLike | Style) -> None:
+        pass
+
+    def render(self) -> "Style":  # type: ignore
         pass
 
 
