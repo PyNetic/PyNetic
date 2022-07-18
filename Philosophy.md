@@ -6,22 +6,22 @@
 
 # ❓What is PyNetic?
 ### 🍃 A fresh take on a frontend framework
-PyNetic aims to build on modern frontend frameworks, focusing on simplicity, utilizing the Python language to eliminate the need 
-for extra boilerplate code or confusion in the development process.
+PyNetic aims to be on modern frontend framework. Focusing on simplicity and modularity, utilizing the Python language to eliminate the need for extra boilerplate code or confusion in the development process.
 
 ### 🛩️ Reactivity should be easy
   - Variable binding should be implicit, not explicit
-     - Instead of explicitly binding a variable to a component and having a wrapper function be the means to causing effects within the dom, a variable should trigger an effect wherever it is used automatically. This just makes sense.
+     - Instead of explicitly binding a variable to a component and having a wrapper function be the means to causing effects within the dom, a variable should trigger an effect wherever it is used automatically. 
+     - To be put in other terms, Variables should act like normal variables, only they cause reactivity. This just makes sense.
   - All variables can be accessed at runtime
     - All variables are defined in global scope at runtime
-    - Access to a variable will subscribe the accessor to changes of that variable
+    - Access to a variable will subscribe the accessor to changes in that variable
 ### 📦 Only nessecary code is sent to the client
   - this means:
     -  no comments
     -  no type hints
     -  Code should be minified as much as possible without losing the original meaining
-### 🖨️ A declaritive Frontend Framework written in Python that compiles to HTML, CSS, JS and lean Python code that can be sent to the browser
-While PyNetic will still need a Python runtime in the browser, it is Python runtime agnostic. Meaning any cPython browser runtime should run PyNetic code.
+### 🖨️ A Frontend Framework written in Python that compiles to HTML, CSS, JS and/or lean Python code that can be sent to the browser
+PyNetic will either need to be compiled to JavaScript, or package a Python runtime to the client.
   - <b>JavaScript should not be the de-facto</b>
     - Until very recently, JavaScript has been the only kid on the block
       - <ins>Insert: WASM!</ins> With WASM any language can be compiled for the browser
@@ -29,6 +29,7 @@ While PyNetic will still need a Python runtime in the browser, it is Python runt
         - While still in development, this allows for python code to be ran in the browser as if it was natively supported
           - Automatically cached
             - On first load of the page the Pyodide runtime is saved into browser cache. Every other time the page is loaded only the Python environment needs to spin-up
+      - <ins>**[Brython]()**</ins>
       - The ultimate goal would be that Python be supported by browsers as JavaScript is now. (this is just a pipe dream)
 
 # ❗What PyNetic <ins>IS NOT</ins>

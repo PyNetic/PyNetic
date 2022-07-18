@@ -1,2 +1,0 @@
-
-selected = Reference(value)
