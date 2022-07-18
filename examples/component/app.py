@@ -1,4 +1,4 @@
-from pynetic import Reference  # type: ignore
+from pynetic import Reference, Component, Page, MakeReference  # type: ignore
 from pynetic.html import SELECT, OPTION  # type: ignore
 
 from red_thing import RedThing
@@ -11,8 +11,13 @@ options = [
     {"color": "blue", "component": BlueThing},
 ]
 
-selected = Reference(options[0])
+with MakeReference():
+    selected = options[1]
 
-Component = SELECT(
-    *(OPTION(selected["color"], value=option) for option in options),
+
+app = Page(
+    SELECT(
+        *(OPTION(selected["color"], value=option) for option in options),
+    ),
+    title="My Title",
 )

@@ -1,7 +1,9 @@
-# ‼️Note
-This is a work in progress, and as the project matures this file is subject to change.
+# ‼️Note 
+### <ins>🚧 PyNetic is currently a work in progress, as the project matures this file is subject to change.</ins>
 
-## 🤔Things to know
+---
+📖 Outline
+---
 - __HTML `class`'es and `id`'s will be managed and assigned by pynetic as needed.__
   - This can be done manually as well but is not needed. **This is useful if you're using a css framework (ex: tailwind)**
   - **Cases where a class will be added to a tag**
@@ -14,12 +16,14 @@ This is a work in progress, and as the project matures this file is subject to c
     - Can be accessed from any page component using import statements
     - Can be used at any time during the session
 
-- __Collections are similiar to stores in Svelte.__
+- __Collections are similar to stores in Svelte.__
   - At their core they are a list of objects
   - They can also be subclassed to interact with a backend or API
   - All possible HTML and CSS is dynamically created at Render stage
   - Whatever cannot be rendered will be rendered client side during on_mount
 
+### Also read: [PyNetic's Philosophy]()
+---
 ## 🗄️File structure (example)
 This outlines the structure of pynetic and it's intended usage.
 

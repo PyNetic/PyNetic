@@ -1,35 +1,43 @@
 <p align="center">
   <a href="https://github.com/Jabbey92/pynetic">
-    <img height="250" src="/assets/icon & name.png">
+    <img height="250" src="assets/icon.png">
   </a>
 </p>
+
 # ❓What is PyNetic?
 ### 🍃 A fresh take on a frontend framework
-PyNetic aims to build on modern frontend frameworks, focusing on simplicity and utilizing the Python language to eliminate the need for extra boilerplate code or confusion in the development process.
+PyNetic aims to build on modern frontend frameworks, focusing on simplicity, utilizing the Python language to eliminate the need 
+for extra boilerplate code or confusion in the development process.
 
-1. Reactivity should be easy
-     - Variable binding should be implicit, not explicit
-       - Instead of explicitly binding a variable to a component and having a wrapper function be the means to causing effects within the dom, a variable should trigger an effect wherever it is used automatically. This just makes sense.
-    - All variables can be accessed at runtime
-      - All variables are defined in global scope at runtime
-      - Access to a variable will subscribe the accessor to changes of that variable
-2. Only nessecary code is sent to the client
-   - this means:
-     -  no comments
-     -  no type hints
-     -  Code should be minified as much as possible without losing the original meaining
-3. JavaScript should not be the de-facto
-   - Until very recently, JavaScript has been the only kid on the block
-     - <ins>Insert: WASM!</ins> With WASM any language can be compiled for the browser
-       - <ins>**[Pyodide](https://pyodide.org/en/stable/)**</ins> - Python runtime compiled for use in the browser
-         - While still in development, this allows for python code to be ran in the browser as if it was natively supported
-         - Automatically cached
-           - On first load of the page the Pyodide runtime is saved into browser cache. Every other time the page is loaded only the Python environment needs to spin-up
-     - The ultimate goal would be that Python be supported by browsers as JavaScript is now. (this is just a pipe dream)
+### 🛩️ Reactivity should be easy
+  - Variable binding should be implicit, not explicit
+     - Instead of explicitly binding a variable to a component and having a wrapper function be the means to causing effects within the dom, a variable should trigger an effect wherever it is used automatically. This just makes sense.
+  - All variables can be accessed at runtime
+    - All variables are defined in global scope at runtime
+    - Access to a variable will subscribe the accessor to changes of that variable
+### 📦 Only nessecary code is sent to the client
+  - this means:
+    -  no comments
+    -  no type hints
+    -  Code should be minified as much as possible without losing the original meaining
+### 🖨️ A declaritive Frontend Framework written in Python that compiles to HTML, CSS, JS and lean Python code that can be sent to the browser
+While PyNetic will still need a Python runtime in the browser, it is Python runtime agnostic. Meaning any cPython browser runtime should run PyNetic code.
+  - <b>JavaScript should not be the de-facto</b>
+    - Until very recently, JavaScript has been the only kid on the block
+      - <ins>Insert: WASM!</ins> With WASM any language can be compiled for the browser
+        - <ins>**[Pyodide](https://pyodide.org/en/stable/)**</ins> - Python runtime compiled for use in the browser
+        - While still in development, this allows for python code to be ran in the browser as if it was natively supported
+          - Automatically cached
+            - On first load of the page the Pyodide runtime is saved into browser cache. Every other time the page is loaded only the Python environment needs to spin-up
+      - The ultimate goal would be that Python be supported by browsers as JavaScript is now. (this is just a pipe dream)
 
-# ❗What PyNetic <ins>IS NOT
-- PyNetic is not a frontend framework made for beginners
-  - You still need an understanding of HTML and CSS
+# ❗What PyNetic <ins>IS NOT</ins>
+### 🍼 PyNetic is not a frontend framework made for beginners
+Although it is still easy for beginners to pick up!
+- You still need an understanding of HTML and CSS
+- PyNetic should be a sigh of relief for people who have worked with JavaScript frameworks
+  -  Especially if you already know python
+-  
 
 # 🤷Why Python?
 <details>
@@ -71,7 +79,8 @@ because it's already done for you.
 
 ---
 # 🔀 What language is sent to the client?
-In short, Python, although there should be means to include JavaScript in the bundle, and means to transpile python to JavaScript
+### In short, <ins>Python</ins>. 
+Although there will be means to include JavaScript into the bundle, and means to transpile Python to JavaScript wherever possible.
 - Javascript translation should be something the developer opt's into to send to the client.
 - If the developer wants to send JavaScript to the client then it should be explicitly written as JavaScript, or requested from PyNetic, by the developer, to transpile the desired python code to JavaScript.
 - PyNetic should be runtime-invariant

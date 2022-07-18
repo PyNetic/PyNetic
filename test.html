@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"></script>
+    <title>Pyodide test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script type="text/javascript">
+    async function main() {
+        let pyodide = await loadPyodide();
+        pyodide.runPython(`
+            from js import document
+            ge = document.getElementById
+            ce = document.createElement
+            app = ge("app")
+            ac = app.appendChild
+            para = ce("p")
+            para.innerText = "Hi there"
+            ac(para)
+    `);
+        console.log(pyodide.runPython("print(1 + 2)"));
+    }
+    main();
+</script>
+
+</html>
