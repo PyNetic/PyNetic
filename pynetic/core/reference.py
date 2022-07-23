@@ -15,6 +15,7 @@ References can be accessed at any time during the session and
 from any page component using import statements
 """
 
+from __future__ import annotations
 import sys
 from types import CodeType
 from typing import Any, Generic, TypeVar
@@ -52,106 +53,94 @@ class Reference(Generic[T], object):
     # :TODO correct the return type so it returns the correct type
     def __call__(self, *args, **kwargs) -> Any:
         self._var(*args, **kwargs)
-        return self._var
+        return self
 
-    def __add__(self, __other: T) -> None:
+    def __add__(self, __other: T) -> T:
         self._add_modification_checkpoint()
-        return self._var + __other
+        return __other
 
-    def __sub__(self, __other: T) -> None:
+    def __sub__(self, __other: T) -> T:
         self._add_modification_checkpoint()
-        return self._var - __other
+        return __other
 
-    def __mul__(self, __other: T) -> None:
+    def __mul__(self, __other: T) -> T:
         self._add_modification_checkpoint()
-        return self._var * __other
+        return __other
 
-    def __floordiv__(self, __other: T) -> None:
+    def __floordiv__(self, __other: T) -> T:
         self._add_modification_checkpoint()
-        return self._var // __other
+        return __other
 
-    def __truediv__(self, __other: T) -> None:
+    def __truediv__(self, __other: T) -> T:
         self._add_modification_checkpoint()
-        return self._var / __other
+        return __other
 
-    def __iadd__(self, __other: T) -> "Reference":
+    def __iadd__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        return self._var + __other
-
-    def __isub__(self, __other: T) -> "Reference":
+        
+    def __isub__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        return self._var - __other
-
-    def __imul__(self, __other: T) -> "Reference":
+        
+    def __imul__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        return self._var * __other
-
-    def __ifloordiv__(self, __other: T) -> "Reference":
+        
+    def __ifloordiv__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        return self._var // __other
-
-    def __itruediv__(self, __other: T) -> "Reference":
+        
+    def __itruediv__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        return self._var / __other
-
+        
     def __lt__(self, __other: T) -> bool:
-        return self._var < __other
+        return True
 
     def __le__(self, __other: T) -> bool:
-        return self._var <= __other
+        return True
 
     def __eq__(self, __other: T) -> bool:
-        return self._var == __other
+        return True
 
     def __ne__(self, __other: T) -> bool:
-        return self._var != __other
+        return True
 
     def __ge__(self, __other: T) -> bool:
-        return self._var >= __other
+        return True
 
     def __gt__(self, __other: T) -> bool:
-        return self._var > __other
+        return True
 
-    # :TODO correct the return type so it returns the correct type
     def __getattribute__(self, __name: str) -> Any:
-        return self._var.__getattribute__(__name)
+        return self
 
-    # :TODO correct the return type so it returns the correct type
     def __getattr__(self, __name: str) -> Any:
-        return self._var.__getattr__(__name)
+        return self
 
-    # :TODO correct the return type so it returns the correct type
     def __getitem__(self, __name: str) -> Any:
-        return self._var.__getitem__(__name)
+        return self
 
-    # :TODO correct the return type so it returns the correct type
     def __get__(self, __name: str) -> Any:
-        return self._var.__get__(__name)
+        return self
 
-    # :TODO correct the return type so it returns the correct type
     def __setitem__(self, __name: str) -> Any:
         self._add_modification_checkpoint()
-        return self._var.__setitem__(__name)
 
-    # :TODO correct the return type so it returns the correct type
     def __set__(self, __name: str) -> Any:
         self._add_modification_checkpoint()
-        return self._var.__set__(__name)
+        return self
 
-    def __bool__(self) -> bool:
-        return bool(self._var)
+    def __bool__(self) -> Reference:
+        return self
 
-    def __int__(self) -> str:
-        return str(self._var)
+    def __int__(self) -> Reference:
+        return self
 
-    def __float__(self) -> str:
-        return str(self._var)
+    def __float__(self) -> Reference:
+        return self
 
-    def __str__(self) -> str:
-        return str(self._var)
+    def __str__(self) -> Reference:
+        return self
 
-    def __repr__(self) -> str:
-        return f"<Reference({self._name}: {repr(self._var)})"  # type: ignore
+    def __repr__(self) -> Reference:
+        return self
 
 
 class MakeReference:
@@ -170,120 +159,3 @@ class MakeReference:
 
             Application.references[name] = Reference(value)
 
-
-reference_bundled = """class Reference(Generic[T], object):
-    def __init__(self, var: T) -> None:
-        self._var = var
-        self._modification_checkpoints: dict[str, CodeType] = {}
-
-    def _propagate_modification_checkpoint(self) -> None:
-        """When _var is modified, this function is called.
-        Adds the caller's code object to the `_modification_checkpoints` list so pynetic
-        knows the calling function is a reactive function.
-        """
-        caller = self.self.sys._getframe(2).f_code
-        self._modification_checkpoints[caller.f_name] = caller
-
-    # :TODO correct the return type so it returns the correct type
-    def __call__(self, *args, **kwargs) -> Any:
-        self._var(*args, **kwargs)
-        return self._var
-
-    def __add__(self, __other: T) -> None:
-        self._add_modification_checkpoint()
-        return self._var + __other
-
-    def __sub__(self, __other: T) -> None:
-        self._add_modification_checkpoint()
-        return self._var - __other
-
-    def __mul__(self, __other: T) -> None:
-        self._add_modification_checkpoint()
-        return self._var * __other
-
-    def __floordiv__(self, __other: T) -> None:
-        self._add_modification_checkpoint()
-        return self._var // __other
-
-    def __truediv__(self, __other: T) -> None:
-        self._add_modification_checkpoint()
-        return self._var / __other
-
-    def __iadd__(self, __other: T) -> "Reference":
-        self._add_modification_checkpoint()
-        return self._var + __other
-
-    def __isub__(self, __other: T) -> "Reference":
-        self._add_modification_checkpoint()
-        return self._var - __other
-
-    def __imul__(self, __other: T) -> "Reference":
-        self._add_modification_checkpoint()
-        return self._var * __other
-
-    def __ifloordiv__(self, __other: T) -> "Reference":
-        self._add_modification_checkpoint()
-        return self._var // __other
-
-    def __itruediv__(self, __other: T) -> "Reference":
-        self._add_modification_checkpoint()
-        return self._var / __other
-
-    def __lt__(self, __other: T) -> bool:
-        return self._var < __other
-
-    def __le__(self, __other: T) -> bool:
-        return self._var <= __other
-
-    def __eq__(self, __other: T) -> bool:
-        return self._var == __other
-
-    def __ne__(self, __other: T) -> bool:
-        return self._var != __other
-
-    def __ge__(self, __other: T) -> bool:
-        return self._var >= __other
-
-    def __gt__(self, __other: T) -> bool:
-        return self._var > __other
-
-    # :TODO correct the return type so it returns the correct type
-    def __getattribute__(self, __name: str) -> Any:
-        return self._var.__getattribute__(__name)
-
-    # :TODO correct the return type so it returns the correct type
-    def __getattr__(self, __name: str) -> Any:
-        return self._var.__getattr__(__name)
-
-    # :TODO correct the return type so it returns the correct type
-    def __getitem__(self, __name: str) -> Any:
-        return self._var.__getitem__(__name)
-
-    # :TODO correct the return type so it returns the correct type
-    def __get__(self, __name: str) -> Any:
-        return self._var.__get__(__name)
-
-    # :TODO correct the return type so it returns the correct type
-    def __setitem__(self, __name: str) -> Any:
-        self._add_modification_checkpoint()
-        return self._var.__setitem__(__name)
-
-    # :TODO correct the return type so it returns the correct type
-    def __set__(self, __name: str) -> Any:
-        self._add_modification_checkpoint()
-        return self._var.__set__(__name)
-
-    def __bool__(self) -> bool:
-        return bool(self._var)
-
-    def __int__(self) -> str:
-        return str(self._var)
-
-    def __float__(self) -> str:
-        return str(self._var)
-
-    def __str__(self) -> str:
-        return str(self._var)
-
-    def __repr__(self) -> str:
-        return f"<Reference({self._name}: {repr(self._var)})"  # type: ignore"""

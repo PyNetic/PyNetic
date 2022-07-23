@@ -1,1 +1,3 @@
-"""pynetic Frontend Framework"""
+"""PyNetic Frontend Framework"""
+
+

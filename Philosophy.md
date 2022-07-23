@@ -15,11 +15,11 @@ PyNetic aims to be on modern frontend framework. Focusing on simplicity and modu
   - All variables can be accessed at runtime
     - All variables are defined in global scope at runtime
     - Access to a variable will subscribe the accessor to changes in that variable
-### 📦 Only nessecary code is sent to the client
+### 📦 Only necessary code is sent to the client
   - this means:
     -  no comments
     -  no type hints
-    -  Code should be minified as much as possible without losing the original meaining
+    -  Code should be minified as much as possible without losing the original meaning
 ### 🖨️ A Frontend Framework written in Python that compiles to HTML, CSS, JS and/or lean Python code that can be sent to the browser
 PyNetic will either need to be compiled to JavaScript, or package a Python runtime to the client.
   - <b>JavaScript should not be the de-facto</b>
