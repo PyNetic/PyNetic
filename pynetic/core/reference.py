@@ -16,11 +16,15 @@ from any page component using import statements
 """
 
 from __future__ import annotations
-import sys
 from types import CodeType
 from typing import Any, Generic, TypeVar
 
 from .application import Application
+
+__all__ = (
+    "Reference", 
+    "MakeReference"
+)
 
 T = TypeVar("T", bound=Any)
 
@@ -143,15 +147,15 @@ class Reference(Generic[T], object):
         return self
 
 
-class MakeReference:
+class ReferenceMaker:
     """Context manager used to assign variables to a project"""
 
-    def __enter__(self):
-        self.initial_vars = globals() | locals()
+    def __enter__(self) -> None:
+        self._initial_vars = globals() | locals()
 
     def __exit__(self, exception_type, exception_value, exception_traceback) -> None:
         for name, value in (globals()).items():
-            if name in self.initial_vars:
+            if name in self._initial_vars:
                 continue
 
             if name in Application.references:
@@ -159,3 +163,4 @@ class MakeReference:
 
             Application.references[name] = Reference(value)
 
+MakeReference = ReferenceMaker()
