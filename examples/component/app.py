@@ -1,4 +1,4 @@
-from pynetic import Page, MakeReference  # type: ignore
+from pynetic import For, Page, MakeReference  # type: ignore
 from pynetic.html import Select, Option  # type: ignore
 
 from red_thing import RedThing
@@ -16,6 +16,8 @@ with MakeReference():
 
 
 app = Page(
-    my_select := Select(),
-    
+    Select(
+        For(options, None, lambda option: Option(selected["color"], value=option))
+    ),
+    title="My Title",
 )

@@ -7,8 +7,6 @@ make_blue = CSS(
     },
 )
 
-
-
 BlueThing = Component(
     Div(
         Strong("Blue thing", style=make_blue),
