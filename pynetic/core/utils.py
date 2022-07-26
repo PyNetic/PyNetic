@@ -8,12 +8,13 @@ from typing import Any, Callable, Iterable, TypeVar
 
 all_letters = ascii_lowercase + ascii_uppercase
 
-def For(self, each: Iterable, condition: Callable, /, *statements: Any) -> None:
+class For:
     """Replacement for builtin for loop to use inline with DOM elements
     
     Args:
         each (Iterable): The iterable to loop over
-        condition (Callable): The function to use as a condition in the for loop
+        condition (Callable | None): The function to use as a condition in the for loop
+        do (Callable): What to do in the loop
     
     Usage:
         ```Python
@@ -27,9 +28,10 @@ def For(self, each: Iterable, condition: Callable, /, *statements: Any) -> None:
                 
         )
     """
-    self.each = each
-    self.condition = condition
-    self.statements = statements
+    def __init__(self, each: Iterable, condition: Callable | None, statements: Any, /) -> None:
+        self.each = each
+        self.condition = condition
+        self.statements = statements
         
     
 
