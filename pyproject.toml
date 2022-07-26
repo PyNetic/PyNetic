@@ -37,7 +37,7 @@ packages = [
 [tool.poetry.dependencies]
 
 # Python Version
-python = ">=3.7"
+python = ">=3.9"
 
 # Required Libraries
 multipledispatch = "^0.6.0"
