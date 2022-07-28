@@ -1,1 +1,1 @@
-"""Layout abstractions"""
+"""HTML and CSS Layout abstractions"""
