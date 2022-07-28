@@ -51,5 +51,14 @@ class Application:
                 if isinstance(var, Component):
                     self._components.add(var)
 
+        build_code = ""
         imported_modules = self._modules - self._routes
         # TODO: Figure out how to build the CST tree for output
+
+        """
+        TODO: In this order
+        Add imports to build_code
+        Add references to build_code
+        Add Functions to build_code
+        Add Components to build_code
+        """
