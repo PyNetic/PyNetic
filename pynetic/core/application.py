@@ -6,8 +6,6 @@ from importlib import import_module
 from types import ModuleType
 from typing import Iterator
 
-from numpy import isin
-
 from .component import Component
 from .reference import Reference
 
