@@ -25,3 +25,7 @@ class Component:
 
     def __hash__(self) -> int:
         return hash(self.__repr__())
+
+    def __build(self) -> ...:
+        # TODO: Figure out what this is going to return. AST/CST tree or just plain text?
+        pass
