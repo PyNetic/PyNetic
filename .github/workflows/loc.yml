@@ -1,0 +1,8 @@
+name: lines-of-code
+on: push
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: ./.github/actions/line-counter
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
