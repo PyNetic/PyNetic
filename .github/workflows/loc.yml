@@ -8,12 +8,12 @@ on:
 
 jobs:
   loc:
-  steps:
-  - name: Checkout
-  uses: actions/checkout@v1
-  - name: LOC
-  uses: ./.github/actions/line-counter
-  with:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
+    steps:
     
+    - name: Checkout Repository
+      uses: actions/checkout@v1
+      with:
+        ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
+    
+    - name: LOC
+      uses: ./.github/actions/line-counter
