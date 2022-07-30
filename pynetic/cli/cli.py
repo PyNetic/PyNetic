@@ -55,24 +55,7 @@ def init(url: str | None) -> None:
         # TODO: Need to notify if file already exists
         return cookiecutter(url, skip_if_file_exists=True)
 
-    name = click.prompt("Please give a name for the application", type=str, default="pynetic-app")
-    description = click.prompt(
-        "Please provide a description for the application", type=str, default=""
-    )
-    version = click.prompt("Please give a version for the application", type=str, default="0.1.0")
-    version_control = click.prompt(
-        "What version control library would you like to use?",
-        type=click.Choice(["poetry"]),
-        default="poetry",
-    )
-
-    if (project_path := cwd / name).exists():
-        return click.echo(f'"{name}" already exists in this directory')
-
-    cookiecutter()
-
-    if version_control == "poetry":
-        setup_poetry(project_path, name, description, version)
+    cookiecutter("https://github.com/pynetic/PyNetic-Templates/tree/main/base-application")
 
     # TODO: Work on other version controls
 
