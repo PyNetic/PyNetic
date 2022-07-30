@@ -2,9 +2,10 @@ name: lines-of-code
 on: [push]
 
 jobs:
-  loc:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/actions/line-counter
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+loc:
+steps:
+- uses: actions/checkout@v1
+- name: loc
+uses: ./.github/actions/line-counter
+  with:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
