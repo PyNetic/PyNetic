@@ -13,8 +13,8 @@ jobs:
     
     - name: Checkout Repository
       uses: actions/checkout@v1
-      with:
-        ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
-    
+      
     - name: LOC
       uses: ./.github/actions/line-counter
+      with:
+        ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
