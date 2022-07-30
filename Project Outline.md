@@ -1,4 +1,11 @@
+<p align="center">
+  <a href="https://github.com/Jabbey92/pynetic">
+    <img height="200" src="assets/icon.svg">
+  </a>
+</p>
+
 # ‼️Note 
+
 ### <ins>🚧 PyNetic is currently a work in progress, as the project matures this file is subject to change.</ins>
 
 ---

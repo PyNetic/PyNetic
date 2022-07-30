@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Jabbey92/pynetic">
-    <img height="250" src="assets/icon & name.png">
+    <img height="300" src="assets/icon & name.svg">
   </a>
 </p>
 
