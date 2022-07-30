@@ -9,7 +9,8 @@ on:
 jobs:
   loc:
   steps:
-  - uses: actions/checkout@v1
+  - name: Checkout
+  uses: actions/checkout@v1
   - name: LOC
   uses: ./.github/actions/line-counter
   with:
