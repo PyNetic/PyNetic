@@ -5,7 +5,7 @@ jobs:
 loc:
 steps:
 - uses: actions/checkout@v1
-- name: loc
+- name: LOC
 uses: ./.github/actions/line-counter
   with:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
