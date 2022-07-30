@@ -13,7 +13,7 @@ OUTPUT_README = ".github/stats/Code Statistics.md"
 LOC_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 
-repo = Github(os.environ.get("TOKEN")).get_repo("PyNetic/{PyGithub}")
+repo = Github(os.environ.get("TOKEN")).get_repo(REPO_NAME)
 old_readme_contents = cast(
     ContentFile,
     repo.get_contents(

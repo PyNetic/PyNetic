@@ -1,11 +1,18 @@
 name: lines-of-code
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - main
+      - 'releases/**'
 
 jobs:
-loc:
-steps:
-- uses: actions/checkout@v1
-- name: LOC
-uses: ./.github/actions/line-counter
+  loc:
+  steps:
+  - uses: actions/checkout@v1
+  - name: LOC
+  uses: ./.github/actions/line-counter
   with:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
+    
