@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Jabbey92/pynetic">
+  <a href="https://github.com/Jabbey92/PyNetic">
     <img height="200" src="assets/icon.svg">
   </a>
 </p>
@@ -11,7 +11,7 @@
 ---
 📖 Outline
 ---
-- __HTML `class`'es and `id`'s will be managed and assigned by pynetic as needed.__
+- __HTML `class`'es and `id`'s will be managed and assigned by PyNetic as needed.__
   - This can be done manually as well but is not needed. **This is useful if you're using a css framework (ex: tailwind)**
   - **Cases where a class will be added to a tag**
     - Any time a style is assigned to an element
@@ -32,7 +32,7 @@
 ### Also read: [PyNetic's Philosophy]()
 ---
 ## 🗄️File structure (example)
-This outlines the structure of pynetic and it's intended usage.
+This outlines the structure of PyNetic and it's intended usage.
 
 ```
 site-name
@@ -73,7 +73,7 @@ site-name
 
 ### `index.py`
 ```Python
-from pynetic import Page, h1
+from PyNetic import Page, h1
 from card import card
 
 # notice this is the same name as the filename. this will be what is rendered
@@ -86,8 +86,8 @@ index = Page(
 ### `card.py`
 
 ```Python
-from pynetic import MakeReference
-from pynetic.html import Component, div, span, form, label, b, p, button, input_
+from PyNetic import MakeReference
+from PyNetic.html import Component, div, span, form, label, b, p, button, input_
 
 with MakeReference():
   username: str = "John"
@@ -122,7 +122,7 @@ card = div(
     custom_div, # div tag defined outside the Component
     div(
         "The",
-        b(p("blue").style(color="car")),  # this style will be automatically managed by pynetic
+        b(p("blue").style(color="car")),  # this style will be automatically managed by PyNetic
     ),
     on_mount=when_mounted, # this will be caught by the component
 

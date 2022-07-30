@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Jabbey92/pynetic">
+  <a href="https://github.com/Jabbey92/PyNetic">
     <img height="300" src="assets/icon & name.svg">
   </a>
 </p>
