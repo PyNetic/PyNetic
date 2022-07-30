@@ -38,7 +38,6 @@ from cookiecutter.main import cookiecutter
 from cookiecutter.replay import get_file_name as get_cookiecutter_name
 
 from ..core.application import Application
-from .utils import setup_poetry
 
 cwd = Path().cwd()
 
