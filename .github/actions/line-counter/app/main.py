@@ -1,4 +1,4 @@
-import os
+from os import environ
 from typing import cast
 
 from github import Github
@@ -7,23 +7,23 @@ from mdutils import MdUtils
 import requests
 
 
-PROJECT_NAME = "PyNetic"
-REPO_NAME = f"PyNetic/{PROJECT_NAME}"
+REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
+PROJECT_NAME = REPO_NAME.split("/")[-1]
 OUTPUT_README = ".github/stats/Code Statistics.md"
 LOC_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 
-repo = Github(os.environ.get("TOKEN")).get_repo(REPO_NAME)
-old_readme_contents = cast(
+REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
+OLD_CONTENTS = cast(
     ContentFile,
-    repo.get_contents(
+    REPOSITORY.get_contents(
         OUTPUT_README,
         ref="test",
     ),
 )
-new_data = zip(*map(dict.values, requests.get(LOC_URL).json()))
+DATA = zip(*map(dict.values, requests.get(LOC_URL).json()))
 
-LANGUAGES = next(new_data)[0:-1]
+LANGUAGES = next(DATA)[0:-1]
 
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
@@ -36,7 +36,7 @@ totals_table = KEYS.copy()
 loc = []
 
 # Populate Tables
-for name, (*values, total) in zip(KEYS, new_data):
+for name, (*values, total) in zip(KEYS, DATA):
     languages_table.extend([name, *values])
     totals_table.append(total)
     if name == "Lines of Code":
@@ -64,10 +64,10 @@ md_file.new_table(columns=len(languages_table), rows=6, text=languages_table)
 md_file.new_line()
 
 # Update Readme
-repo.update_file(
-    old_readme_contents.path,
+REPOSITORY.update_file(
+    OLD_CONTENTS.path,
     "📈Update code statistics",
     md_file.get_md_text(),
-    old_readme_contents.sha,
+    OLD_CONTENTS.sha,
     branch="master",
 )
