@@ -17,8 +17,3 @@ jobs:
     -
       name: LOC
       uses: ./.github/actions/line-counter
-      with:
-        context: .
-        platforms: linux/amd64,linux/arm64
-        secrets: |
-            "TOKEN=${{ secrets.GITHUB_TOKEN }}"
