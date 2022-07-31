@@ -8,7 +8,7 @@ import requests
 
 REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 PROJECT_NAME = REPO_NAME.split("/")[-1]
-OUT_PATH = "./.github/stats/Code Statistics.md"
+OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 
