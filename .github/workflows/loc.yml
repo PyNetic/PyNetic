@@ -17,3 +17,5 @@ jobs:
     -
       name: LOC
       uses: ./.github/actions/line-counter
+      with:
+        token: ${{ secrets.ACTIONS_TOKEN }}
