@@ -1,8 +1,6 @@
 #syntax=docker/dockerfile:1.2
 
 FROM python:latest
-RUN useradd --user-group --system --create-home --no-log-init nonroot
-USER nonroot
 
 COPY ./app /app
 
