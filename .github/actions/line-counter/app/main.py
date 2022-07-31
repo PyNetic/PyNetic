@@ -17,7 +17,8 @@ OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 REPOSITORY = Github(environ.get("ACTION_TOKEN")).get_repo(REPO_NAME)
-SHA = cast(str, environ.get("GITHUB_SHA"))
+OLD_CONTENTS = REPOSITORY.get_contents(OUT_PATH)
+SHA = OLD_CONTENTS.sha if isinstance(OLD_CONTENTS, ContentFile) else OLD_CONTENTS[0].sha
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
 # Setup Tables
