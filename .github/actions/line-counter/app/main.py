@@ -6,6 +6,7 @@ from github.ContentFile import ContentFile
 from mdutils import MdUtils
 import requests
 
+print(">>> Python Starting Code Stats Process <<<")
 
 REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 PROJECT_NAME = REPO_NAME.split("/")[-1]
