@@ -2,6 +2,7 @@ from os import environ
 from typing import cast
 
 from github import Github
+import github
 from github.ContentFile import ContentFile
 from mdutils import MdUtils
 import requests
@@ -15,9 +16,16 @@ KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍�
 print(f">>> Starting Code Stats Process for {REPO_NAME} <<<")
 
 REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
-OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH))
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
+
+# Get the contents
+try:
+    OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH))
+except github.GithubException:
+    OLD_CONTENTS = cast(
+        ContentFile, REPOSITORY.create_file(OUT_PATH, "🎉Create stats file", "")["content"]
+    )
 
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
@@ -62,8 +70,8 @@ print(OLD_CONTENTS, OLD_CONTENTS.path, OLD_CONTENTS.sha, sep="\n")
 
 # Update Readme
 REPOSITORY.update_file(
-    OLD_CONTENTS.path,
-    "📈Update code statistics",
-    md_file.get_md_text(),
-    OLD_CONTENTS.sha,
+    path=OLD_CONTENTS.path,
+    message="📈Update code statistics",
+    content=md_file.get_md_text(),
+    sha=OLD_CONTENTS.sha,
 )
