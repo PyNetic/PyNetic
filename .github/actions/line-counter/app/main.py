@@ -16,10 +16,7 @@ PROJECT_NAME = REPO_NAME.split("/")[-1]
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
-GIT = Github(environ.get("INPUT_GITHUB_TOKEN"))
-print(GIT)
-print(dir(GIT))
-REPOSITORY = GIT.get_repo(REPO_NAME)
+REPOSITORY = Github(environ.get("INPUT_GITHUB_TOKEN")).get_repo(REPO_NAME)
 OLD_CONTENTS = REPOSITORY.get_contents(OUT_PATH)
 SHA = OLD_CONTENTS.sha if isinstance(OLD_CONTENTS, ContentFile) else OLD_CONTENTS[0].sha
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
@@ -28,7 +25,6 @@ LANGUAGES = next(DATA)[0:-1]
 languages_table = ["", *LANGUAGES]
 totals_table = KEYS.copy()
 loc = []
-
 
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
@@ -39,6 +35,7 @@ md_file.new_header(1, f"📊 Code Statistics for {PROJECT_NAME}")
 for name, (*values, total) in zip(KEYS, DATA):
     languages_table.extend([name, *values])
     totals_table.append(total)
+    print(f"{name=}")
     if name == "Lines of Code":
         loc.extend(values)
 
@@ -49,8 +46,8 @@ total_loc = sum(loc)
 md_file.new_line("```mermaid")
 md_file.new_line("pie languages")
 md_file.new_line("    title Language Distribution")
-print(f"KEYS: {KEYS}")
-print(f"loc: {loc}")
+print(f"{KEYS=}")
+print(f"{loc=}")
 for language, lines in zip(KEYS, loc):
     md_file.new_line(f'    "{language}" : {lines/total_loc}')
 md_file.new_line("```")
