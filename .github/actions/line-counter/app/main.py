@@ -16,7 +16,7 @@ PROJECT_NAME = REPO_NAME.split("/")[-1]
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
-GIT = Github(environ.get("INPUT_TOKEN"))
+GIT = Github(environ.get("INPUT_GITHUB_TOKEN"))
 print(GIT)
 print(dir(GIT))
 REPOSITORY = GIT.get_repo(REPO_NAME)
