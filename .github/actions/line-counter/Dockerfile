@@ -9,6 +9,6 @@ RUN pip install pipenv requests mdutils PyGithub && pipenv sync \
   python genenv.py
 
 # Setup Environment Variables
-ENV ${github_token?tokennotset}
+ENV TOKEN ${github_token?tokennotset}
 
 CMD ["python", "/app/main.py"]
