@@ -1,6 +1,7 @@
 #syntax=docker/dockerfile:1.2
 
 FROM python:latest
+USER nonroot
 
 COPY ./app /app
 
@@ -10,5 +11,5 @@ RUN pip install pipenv requests mdutils PyGithub && pipenv sync \
 
 # Setup Environment Variables
 ENV TOKEN ${github_token?tokennotset}
-USER nonroot
+
 CMD ["python", "/app/main.py"]
