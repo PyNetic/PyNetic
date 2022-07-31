@@ -1,13 +1,7 @@
-FROM python:latest
-
-RUN apt-get update
+FROM python:3.10
 
 COPY ./app .
 
-# Install requirements
 RUN pip install requests mdutils PyGithub
-
-# Setup Environment Variables
-ENV TOKEN=$token
 
 CMD ["python", "main.py"]

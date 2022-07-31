@@ -11,11 +11,5 @@ jobs:
   loc:
     runs-on: ubuntu-latest
     steps:
-    -
-      name: Checkout Repository
-      uses: actions/checkout@v1
-    -
-      name: LOC
-      uses: ./.github/actions/line-counter
-      with:
-        token: ${{ secrets.ACTIONS_TOKEN }}
+    - uses: actions/checkout@v1
+    - uses: ./.github/actions/line-counter
