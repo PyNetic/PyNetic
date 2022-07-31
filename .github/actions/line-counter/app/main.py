@@ -6,24 +6,17 @@ from github.ContentFile import ContentFile
 from mdutils import MdUtils
 import requests
 
-print(">>> Python Starting Code Stats Process <<<")
-
 REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 PROJECT_NAME = REPO_NAME.split("/")[-1]
-OUTPUT_README = ".github/stats/Code Statistics.md"
+OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 
-REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
-OLD_CONTENTS = cast(
-    ContentFile,
-    REPOSITORY.get_contents(
-        OUTPUT_README,
-        ref="test",
-    ),
-)
-DATA = zip(*map(dict.values, requests.get(LOC_URL).json()))
+print(f">>> Starting Code Stats Process for {REPO_NAME} <<<")
 
+REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
+OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH, ref="test"))
+DATA = zip(*map(dict.values, requests.get(LOC_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
 
 # Create Markdown File
