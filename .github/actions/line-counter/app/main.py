@@ -64,7 +64,7 @@ new_contents = md_file.get_md_text()
 
 # Update Readme
 try:
-    REPOSITORY.update_file(OUT_PATH, "📈 Update stats file", new_contents, SHA, author=AUTHOR)
+    REPOSITORY.update_file(OUT_PATH, "📈 Update stats file", new_contents, SHA)
 
 except GithubException:
-    REPOSITORY.create_file(OUT_PATH, "🎉 Create stats file", new_contents, author=AUTHOR)
+    REPOSITORY.create_file(OUT_PATH, "🎉 Create stats file", new_contents)
