@@ -1,14 +1,10 @@
 name: lines-of-code
-
 on:
   push:
-    branches:
-      - master
-      - main
-      - 'releases/**'
-
+    branches: [master, main, 'releases/**']
 jobs:
   loc:
+    permissions: read-all|write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
