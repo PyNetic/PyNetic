@@ -20,5 +20,5 @@ jobs:
       with:
         context: .
         platforms: linux/amd64,linux/arm64
-        secrets: |
-            "github_token=${{ secrets.GITHUB_TOKEN }}"
+        options:
+          --e github_token=${{ secrets.GITHUB_TOKEN }}
