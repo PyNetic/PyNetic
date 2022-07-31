@@ -4,7 +4,6 @@ on:
     branches: [master, main, 'releases/**']
 jobs:
   loc:
-    permissions: 'read-all | write-all'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

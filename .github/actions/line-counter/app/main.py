@@ -13,11 +13,10 @@ REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 print(f">>> Starting Code Stats Process for {REPO_NAME} <<<")
 
 PROJECT_NAME = REPO_NAME.split("/")[-1]
-AUTHOR = InputGitAuthor("Jabbey92", "92jbach@gmail.com")
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
-REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
+REPOSITORY = Github(environ.get("ACTION_TOKEN")).get_repo(REPO_NAME)
 SHA = cast(str, environ.get("GITHUB_SHA"))
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
@@ -68,3 +67,5 @@ try:
 
 except GithubException:
     REPOSITORY.create_file(OUT_PATH, "🎉 Create stats file", new_contents)
+
+print(f">>> Code Stats Process for {REPO_NAME} Finished <<<")
