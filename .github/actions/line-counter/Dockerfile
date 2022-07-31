@@ -9,7 +9,8 @@ COPY ./app /app
 RUN pip install pipenv requests mdutils PyGithub && pipenv sync
 
 # Setup Environment Variables
-RUN --mount=type=secret, id=github_token \
-  cat /run/secrets/token
+RUN --mount=type=secret, id=TOKEN \
+  export TOKEN=$(cat /run/secrets/TOKEN) \
+  python genenv.py
 
 CMD ["python", "/app/main.py"]
