@@ -1,4 +1,5 @@
 name: lines-of-code
+
 on:
   push:
     branches:
@@ -10,12 +11,14 @@ jobs:
   loc:
     runs-on: ubuntu-latest
     steps:
-    
-    - name: Checkout Repository
+    -
+      name: Checkout Repository
       uses: actions/checkout@v1
-      
-    - name: LOC
+    -
+      name: LOC
       uses: ./.github/actions/line-counter
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        standard_token: ${{ secrets.ACTION_TOKEN }}
+        context: .
+        platforms: linux/amd64,linux/arm64
+        secrets: |
+            "github_token=${{ secrets.GITHUB_TOKEN }}"
