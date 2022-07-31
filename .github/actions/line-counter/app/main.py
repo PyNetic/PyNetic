@@ -63,9 +63,9 @@ md_file.new_line()
 # Updated contents for markdown file
 new_contents = md_file.get_md_text()
 
-# try using normal methods to save file
-with open(OUT_PATH, "w") as file:
-    file.write(new_contents)
+print(f"Owner: {REPOSITORY.owner}")
+print(f"Repo: {REPOSITORY.name}")
+print(f"Org: {REPOSITORY.organization}")
 
 # Update Readme
 try:
