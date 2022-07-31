@@ -35,8 +35,7 @@ md_file.new_header(1, f"📊 Code Statistics for {PROJECT_NAME}")
 for name, (*values, total) in zip(KEYS, DATA):
     languages_table.extend([name, *values])
     totals_table.append(total)
-    print(f"{name=}")
-    if name == "Lines of Code":
+    if "Lines of Code" in name:
         loc.extend(values)
 
 # Get the total line count
