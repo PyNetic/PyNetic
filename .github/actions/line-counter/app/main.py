@@ -15,7 +15,7 @@ KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍�
 print(f">>> Starting Code Stats Process for {REPO_NAME} <<<")
 
 REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
-OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH, ref="test"))
+OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH, ref="master"))
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
 
