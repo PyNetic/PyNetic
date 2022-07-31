@@ -33,6 +33,7 @@ loc = []
 for name, (*values, total) in zip(KEYS, DATA):
     languages_table.extend([name, *values])
     totals_table.append(total)
+
     if name == "Lines of Code":
         loc.extend(values)
 
@@ -54,6 +55,7 @@ md_file.new_line()
 
 # Languages Table
 md_file.new_header(2, "👨‍💻Languages")
+print(languages_table)
 md_file.new_table(columns=len(languages_table), rows=6, text=languages_table)
 md_file.new_line()
 
