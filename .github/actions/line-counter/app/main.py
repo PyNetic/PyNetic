@@ -58,6 +58,7 @@ md_file.new_header(2, "👨‍💻Languages")
 md_file.new_table(columns=len(LANGUAGES) + 1, rows=6, text=languages_table)
 md_file.new_line()
 
+
 # Updated contents for markdown file
 new_contents = md_file.get_md_text()
 
@@ -65,7 +66,8 @@ new_contents = md_file.get_md_text()
 try:
     REPOSITORY.update_file(OUT_PATH, "📈 Update stats file", new_contents, SHA)
 
-except GithubException:
+except GithubException as err:
+    print(f"Could not edit file because of this error: {err}")
     REPOSITORY.create_file(OUT_PATH, "🎉 Create stats file", new_contents)
 
 print(f">>> Code Stats Process for {REPO_NAME} Finished <<<")
