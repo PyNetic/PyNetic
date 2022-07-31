@@ -8,6 +8,7 @@ import requests
 
 REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 PROJECT_NAME = REPO_NAME.split("/")[-1]
+BRANCH = "master"
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
@@ -15,7 +16,7 @@ KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍�
 print(f">>> Starting Code Stats Process for {REPO_NAME} <<<")
 
 REPOSITORY = Github(environ.get("TOKEN")).get_repo(REPO_NAME)
-OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH, ref="master"))
+OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH, ref=BRANCH))
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
 LANGUAGES = next(DATA)[0:-1]
 
@@ -55,9 +56,10 @@ md_file.new_line()
 
 # Languages Table
 md_file.new_header(2, "👨‍💻Languages")
-print(languages_table)
 md_file.new_table(columns=len(LANGUAGES) + 1, rows=6, text=languages_table)
 md_file.new_line()
+
+print(OLD_CONTENTS, OLD_CONTENTS.path, OLD_CONTENTS.sha, sep="\n")
 
 # Update Readme
 REPOSITORY.update_file(
@@ -65,5 +67,5 @@ REPOSITORY.update_file(
     "📈Update code statistics",
     md_file.get_md_text(),
     OLD_CONTENTS.sha,
-    branch="master",
+    branch=BRANCH,
 )
