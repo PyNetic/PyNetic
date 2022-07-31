@@ -1,8 +1,8 @@
-#syntax=docker/dockerfile:1.2
-
 FROM python:latest
 
-COPY ./app /app
+RUN apt-get update
+
+COPY ./app /home/nonroot/app
 
 # Install requirements
 RUN pip install pipenv requests mdutils PyGithub && pipenv sync
@@ -12,4 +12,4 @@ RUN --mount=type=secret, id=TOKEN \
   export TOKEN=$(cat /run/secrets/TOKEN) && \
   python genenv.py
 
-CMD ["python", "/app/main.py"]
+CMD ["python", "/home/nonroot/app/main.py"]
