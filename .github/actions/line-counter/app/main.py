@@ -18,6 +18,7 @@ LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 REPOSITORY = Github(environ.get("ACTION_TOKEN")).get_repo(REPO_NAME)
 print(f"USer: {Github(environ.get('ACTION_TOKEN')).get_user()}")
+print(environ.get("ACTION_TOKEN"))
 OLD_CONTENTS = REPOSITORY.get_contents(OUT_PATH)
 SHA = OLD_CONTENTS.sha if isinstance(OLD_CONTENTS, ContentFile) else OLD_CONTENTS[0].sha
 DATA = zip(*map(dict.values, requests.get(LOC_API_URL).json()))
@@ -43,21 +44,24 @@ for name, (*values, total) in zip(KEYS, DATA):
 # Get the total line count
 total_loc = sum(loc)
 
-# Totals Table
-md_file.new_header(2, "Totals")
-md_file.new_table(columns=5, rows=2, text=totals_table)
-md_file.new_line()
-
 # Add Pie Chart
+md_file.new_line("```mermaid")
 md_file.new_line("pie languages")
 md_file.new_line("    title Language Distribution")
+print(f"KEYS: {KEYS}")
+print(f"loc: {loc}")
 for language, lines in zip(KEYS, loc):
     md_file.new_line(f'    "{language}" : {lines/total_loc}')
+md_file.new_line("```")
 md_file.new_line()
 
 # Languages Table
 md_file.new_header(2, "👨‍💻Languages")
 md_file.new_table(columns=len(LANGUAGES) + 1, rows=6, text=languages_table)
+md_file.new_line()
+# Totals Table
+md_file.new_header(2, "Totals")
+md_file.new_table(columns=5, rows=2, text=totals_table)
 md_file.new_line()
 
 
