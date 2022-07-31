@@ -64,9 +64,7 @@ md_file.new_line()
 # Updated contents for markdown file
 new_contents = md_file.get_md_text()
 
-print(f"Owner: {REPOSITORY.owner}")
-print(f"Repo: {REPOSITORY.name}")
-print(f"Org: {REPOSITORY.organization}")
+print(new_contents)
 
 # Update Readme
 try:
