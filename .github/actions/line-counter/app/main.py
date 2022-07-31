@@ -24,8 +24,9 @@ try:
     OLD_CONTENTS = cast(ContentFile, REPOSITORY.get_contents(OUT_PATH))
 except github.GithubException:
     OLD_CONTENTS = cast(
-        ContentFile, REPOSITORY.create_file(OUT_PATH, "🎉Create stats file", "")["content"]
+        ContentFile, REPOSITORY.create_file(OUT_PATH, "🎉Create stats file", "New Stats")["content"]
     )
+    exit(1)
 
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
