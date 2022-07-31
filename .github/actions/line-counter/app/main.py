@@ -43,12 +43,11 @@ total_loc = sum(loc)
 
 # Add Pie Chart
 md_file.new_line("```mermaid")
-md_file.new_line("pie languages")
-md_file.new_line("    title Language Distribution")
+md_file.new_line("pie title Language Distribution")
 print(f"{KEYS=}")
 print(f"{loc=}")
 for language, lines in zip(KEYS, loc):
-    md_file.new_line(f'    "{language}" : {lines/total_loc}')
+    md_file.new_line(f'    "{language}" : {(lines/total_loc)*10}')
 md_file.new_line("```")
 md_file.new_line()
 
