@@ -63,6 +63,10 @@ md_file.new_line()
 # Updated contents for markdown file
 new_contents = md_file.get_md_text()
 
+# try using normal methods to save file
+with open(OUT_PATH, "w") as file:
+    file.write(new_contents)
+
 # Update Readme
 try:
     REPOSITORY.update_file(OUT_PATH, "📈 Update stats file", new_contents, SHA)
