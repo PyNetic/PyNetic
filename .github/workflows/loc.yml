@@ -16,5 +16,5 @@ jobs:
     - name: LOC
       uses: ./.github/actions/line-counter
       with:
-        options:
+        args:
           --e github_token=${{ secrets.GITHUB_TOKEN }}
