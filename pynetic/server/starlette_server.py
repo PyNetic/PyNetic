@@ -29,7 +29,7 @@ class Transpiler:
 
             if route_name not in self.files:
                 import_module((filename := file.name))
-                for local in (module := cast(ModuleType, eval(route_name))).items():
+                for local in (module := cast(ModuleType, eval(route_name))).items():  # nosec: eval is safe here
                     if isinstance(local, Page):
                         self.files[route_name] = last_modified_date, local
                         break
@@ -38,7 +38,7 @@ class Transpiler:
                         f"{filename} Does not contain a Page element. This module was not loaded."
                     )
             else:
-                module = cast(ModuleType, eval(route_name))
+                module = cast(ModuleType, eval(route_name))  # nosec: eval is safe here
 
             if self.files[route_name] != last_modified_date:
                 reload(module)
