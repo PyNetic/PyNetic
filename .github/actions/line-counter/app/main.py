@@ -28,7 +28,7 @@ lines_chart_table = []
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
 md_file.create_md_file()
-md_file.new_header(1, "📊 Code Statistics for {PROJECT_NAME}")
+md_file.new_header(1, f"📊 Code Statistics for {PROJECT_NAME}")
 
 # Populate Languages Table
 for num_languages, language in enumerate(data, 1):
@@ -39,23 +39,21 @@ for num_languages, language in enumerate(data, 1):
         lines_chart_table.extend([*_, lines])
 
 # Add Languages Pie Chart
-md_file.new_line('<p align="left">')
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Language Distribution")
 for language, lines in language_chart_table.items():
     md_file.new_line(f'    "{language}" : {lines}')
 md_file.new_line("```")
 md_file.new_line()
-md_file.new_line("</p>")
 
 # Add Lines Pie Chart
-md_file.new_line('<p align="right">')
+md_file.new_line('<div class="right">')
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Code Distribution")
 for line_type, lines in zip(KEYS, lines_chart_table):
     md_file.new_line(f'    "{line_type}" : {lines}')
 md_file.new_line("```")
-md_file.new_line("</p>")
+md_file.new_line("</div>")
 md_file.new_line()
 
 # Languages Table
