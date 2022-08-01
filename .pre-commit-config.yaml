@@ -46,4 +46,4 @@ repos:
     hooks:
       - id: bandit
         exclude: "test_*"
-        args: ["-iii", "-ll", "-s=B308,B703"]
+        args: ["-iii", "-ll", "-s=B308,B703,B307"]
