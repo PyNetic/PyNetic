@@ -16,14 +16,16 @@ PROJECT_NAME = REPO_NAME.split("/")[-1]
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 REPOSITORY = Github(environ.get("INPUT_GITHUB_TOKEN")).get_repo(REPO_NAME)
-OLD_CONTENTS = REPOSITORY.get_contents(OUT_PATH)
-SHA = OLD_CONTENTS.sha if isinstance(OLD_CONTENTS, ContentFile) else OLD_CONTENTS[0].sha
+COMMIT = REPOSITORY.get_commit(os.environ.get("GITHUB_SHA"))
 data = map(dict.values, requests.get(LOC_API_URL).json())
 # Setup Tables
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
 languages_table = ["", *KEYS]
 language_chart_table = {}
 lines_chart_table = []
+
+if isinstance(COMMIT, list):
+    COMMIT = COMMIT[0]
 
 # Create Markdown File
 md_file = MdUtils("Lines Of Code.md")
@@ -72,7 +74,12 @@ new_contents = re.sub("\s{2}$(?<!\d)", "", md_file.get_md_text(), flags=re.M)[1:
 
 # Update Readme
 try:
-    REPOSITORY.update_file(OUT_PATH, "📈 Update stats file", new_contents, SHA)
+    REPOSITORY.update_file(
+        OUT_PATH,
+        "📈 Update stats file",
+        new_contents,
+        COMMIT.sha,
+    )
 
 except GithubException as err:
     print(f"Could not edit file because of this error: {err}")
