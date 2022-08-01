@@ -24,7 +24,7 @@ class FlexDirection(Enum):
     # Row
     row = "row"
     vertical = "row"
-    top_down = "row
+    top_down = "row"
     
     # Row Reverse
     row_reverse = "row-reverse"
