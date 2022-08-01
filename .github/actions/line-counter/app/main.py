@@ -16,7 +16,7 @@ PROJECT_NAME = REPO_NAME.split("/")[-1]
 OUT_PATH = ".github/stats/Code Statistics.md"
 LOC_API_URL = f"https://api.codetabs.com/v1/loc?github={REPO_NAME}"
 REPOSITORY = Github(environ.get("INPUT_GITHUB_TOKEN")).get_repo(REPO_NAME)
-COMMIT = REPOSITORY.get_commit(os.environ.get("GITHUB_SHA"))
+COMMIT = REPOSITORY.get_commit(environ.get("GITHUB_SHA"))
 data = map(dict.values, requests.get(LOC_API_URL).json())
 # Setup Tables
 KEYS = ["📝Files", "〰️Lines", "🗨️Blanks", "🙈Comments", "👨‍💻Lines of Code"]
