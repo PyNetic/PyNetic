@@ -1,12 +1,19 @@
 name: lines-of-code
+
 on:
   push:
     branches: [master, main, "releases/**"]
+  pull-request:
+
 jobs:
-  loc:
+  lines-of-code:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/actions/line-counter
+      -
+      name: Checkout
+      uses: actions/checkout@v1
+      -
+      name: Stats Updater
+      uses: ./.github/actions/line-counter
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
