@@ -29,7 +29,10 @@ repos:
     rev: v2.1.0
     hooks:
       - id: codespell
-        args: [--skip="*.svg"]
+        exclude: >
+            (?x)^(
+                .*\.json|\.tox|*.svg
+            )$
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.12.1
     hooks:
