@@ -47,7 +47,7 @@ md_file.new_line("pie title Language Distribution")
 print(f"{KEYS=}")
 print(f"{loc=}")
 for language, lines in zip(KEYS, loc):
-    md_file.new_line(f'    "{language}" : {lines}')
+    md_file.new_line(f'    "{language}" : {lines}'.rstrip())
 md_file.new_line("```")
 md_file.new_line()
 
