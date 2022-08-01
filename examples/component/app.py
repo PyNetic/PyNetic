@@ -1,9 +1,9 @@
-from pynetic import For, Page, MakeReference  # type: ignore
-from pynetic.html import Select, Option  # type: ignore
-
-from red_thing import RedThing
-from green_thing import GreenThing
 from blue_thing import BlueThing
+from green_thing import GreenThing
+from red_thing import RedThing
+
+from pynetic import For, MakeReference, Page  # type: ignore
+from pynetic.html import Option, Select  # type: ignore
 
 options = [
     {"color": "red", "component": RedThing},
@@ -16,8 +16,6 @@ with MakeReference():
 
 
 app = Page(
-    Select(
-        For(options, None, lambda option: Option(selected["color"], value=option))
-    ),
+    Select(For(options, None, lambda option: Option(selected["color"], value=option))),
     title="My Title",
 )

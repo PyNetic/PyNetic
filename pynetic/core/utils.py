@@ -1,10 +1,11 @@
 """pynetic utilities module"""
 
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from itertools import count, product
 from string import ascii_lowercase, ascii_uppercase
 from types import FunctionType
-from typing import Any, Callable, Iterable, TypeVar
+from typing import Any, TypeVar
 
 all_letters = ascii_lowercase + ascii_uppercase
 
@@ -39,5 +40,4 @@ class For:
 def iter_short_names():
     """Generator over a-z ... A-Z ... aa-ZZ ..."""
     for i in count():
-        for s in map("".join, product(all_letters, repeat=i)):
-            yield s
+        yield from map("".join, product(all_letters, repeat=i))

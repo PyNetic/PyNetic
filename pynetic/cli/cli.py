@@ -3,30 +3,30 @@
 Used as the starting point for a PyNetic application and for development and build purposes.
 
 Commands:
-    
+
     init:
         Initializes a template using command prompts
-        
+
         Options:
             url: Initializes a template using cookie cutter library
-        
+
         Usage:
             > pynetic init
             ...
-    
+
     run:
         Runs either development server or build steps for production use
-        
+
         Options:
             dev: Runs dev server. Hot reloads modules on file save.
             build: Builds Application for production
-            
+
         Usage:
             > pynetic run dev
             ---- Running on http://localhost:8000 ----
-            
+
             Or
-            
+
             > pynetic run build
             ...
 """

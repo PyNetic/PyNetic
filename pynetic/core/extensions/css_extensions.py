@@ -2,37 +2,38 @@
 
 from enum import Enum
 
+from .css import hsl, percent, pixels
 from .html import HTMLElement
-from .css import percent, pixels, hsl
 
 
 class FlexProperties(Enum):
     """Reference Mozilla
-    
+
     Link:
         https://developer.mozilla.org/en-US/docs/Web/CSS/flex
     """
+
     # Keyword Values
     auto = "auto"
     initial = "initial"
     none = "none"
-    
+
     # Global Values
     inherit = "inherit"
     initial = "initial"
     revert = "revert"
     revert_layer = "revert-layer"
     unset = "unset"
-    
+
     # Other
     min_content = "min-content"
 
 
 def Center(element: HTMLElement) -> HTMLElement:
     """Centers an Element using traditional means
-    
+
     Got this implementation from StackOverflow answer:
-    
+
     Link:
         https://stackoverflow.com/a/18618259/225020
     """
@@ -46,25 +47,27 @@ def Center(element: HTMLElement) -> HTMLElement:
                 "height": percent(100),
                 "vertical-align": "middle",
                 "width": px(0),
-            }
+            },
         }
     )
 
+
 def CenterFlex(element: HTMLElement) -> HTMLElement:
     """Centers an Element by wrapping it in a flex box
-    
+
     Got this implementation from the same StackOverflow answer as `Center`:
-    
+
     Link:
         https://stackoverflow.com/a/18618259/225020
     """
     return element.style(
         {
-          "align-items": "center",
-          "display": "flex",
-          "justify-content": "center",
+            "align-items": "center",
+            "display": "flex",
+            "justify-content": "center",
         }
     )
+
 
 def Flex(
     flex_grow: str | int | FlexValues = FlexProperties.auto,
@@ -74,14 +77,14 @@ def Flex(
 ) -> Callable[[str | HTMLElement], HTMLElement]:
     """Defines the flex properties of an element.
     If element is type `str` then it wraps it in a `Div`
-    
+
     *For use within an element with a style of flex (or use html_extensions.FlexBox)*
-    
+
     Args:
         flex_grow (str | int | FlexProperties):
         flex_shrink (str | int | None = None):
         flex_basis (str | int | None = None):
-    
+
     Usage:
         ```Python
         FlexBox(
@@ -91,27 +94,27 @@ def Flex(
         ```
     """
     new_style = {"flex-grow": flex_grow}
-    
+
     if flex_shrink is not None:
         new_style["flex-shrink"] = flex_shrink
-    
+
     if flex_basis is not None:
         new_style["flex-basis"] = flex_basis
-    
+
     def MakeFlex(element: str | HTMLElement) -> HTMLElement:
         if isinstance(element, str):
             element = Div(element)
 
         return element.style(new_style)
-    
-    
+
+
 class Color(Enum):
     """Reference W3C
-    
+
     Link:
         https://www.w3.org/wiki/CSS/Properties/color/keywords
     """
-    
+
     # Basic Colors
     black = hsl(0, 0, 0)
     silver = hsl(192, 192, 192)
@@ -129,8 +132,8 @@ class Color(Enum):
     blue = hsl(0, 0, 255)
     teal = hsl(0, 128, 128)
     aqua = hsl(0, 255, 255)
-    aliceblue = hsl(240,248,255)
-    
+    aliceblue = hsl(240, 248, 255)
+
     # Extended Colors
     antiquewhite = hsl(250, 235, 215)
     aqua = hsl(0, 255, 255)

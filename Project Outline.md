@@ -4,34 +4,40 @@
   </a>
 </p>
 
-# ‼️Note 
+# ‼️Note
 
 ### <ins>🚧 PyNetic is currently a work in progress, as the project matures this file is subject to change.</ins>
 
 ---
-📖 Outline
----
-- __HTML `class`'es and `id`'s will be managed and assigned by PyNetic as needed.__
+
+## 📖 Outline
+
+- **HTML `class`'es and `id`'s will be managed and assigned by PyNetic as needed.**
+
   - This can be done manually as well but is not needed. **This is useful if you're using a css framework (ex: tailwind)**
   - **Cases where a class will be added to a tag**
     - Any time a style is assigned to an element
     - Any time there is an event assigned to an element
 
-- __References (aka: `state`'s in react) are automatically bound to the session__
+- **References (aka: `state`'s in react) are automatically bound to the session**
+
   - References must have distinct names from any other name in the project as they are assigned the name they are given on instantiation
   - References are bound using `MakeReference` context-manager
     - Can be accessed from any page component using import statements
     - Can be used at any time during the session
 
-- __Collections are similar to stores in Svelte.__
+- **Collections are similar to stores in Svelte.**
   - At their core they are a list of objects
   - They can also be subclassed to interact with a backend or API
   - All possible HTML and CSS is dynamically created at Render stage
   - Whatever cannot be rendered will be rendered client side during on_mount
 
 ### Also read: [PyNetic's Philosophy]()
+
 ---
+
 ## 🗄️File structure (example)
+
 This outlines the structure of PyNetic and it's intended usage.
 
 ```
@@ -72,6 +78,7 @@ site-name
 ## 💻Example Code:
 
 ### `index.py`
+
 ```Python
 from PyNetic import Page, h1
 from card import card

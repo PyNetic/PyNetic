@@ -4,11 +4,12 @@ HTML tags act as components and as page elements depending upon use and location
 """
 
 from __future__ import annotations
-from typing import Any, Callable, Iterable, Type, TypeAlias
 
-from lxml.html import builder as HTMLBuilder
+from collections.abc import Callable, Iterable
+from typing import Any, Type, TypeAlias
 
 from css import Style  # type: ignore
+from lxml.html import builder as HTMLBuilder
 
 __code: TypeAlias = Any
 
@@ -91,7 +92,7 @@ class HTMLElement:
         )
 
 
-def define_element(tag: str, docstring: str, is_self_closing: bool = False) -> Type[HTMLElement]:
+def define_element(tag: str, docstring: str, is_self_closing: bool = False) -> type[HTMLElement]:
     class TaggedHTMLElement(HTMLElement):
         _tag: str = tag
         _self_closing = not is_self_closing

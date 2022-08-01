@@ -1,11 +1,12 @@
 """"""
 
+from collections.abc import AsyncGenerator
 from importlib import import_module, reload
 from os import path
-from sys import modules
 from pathlib import Path
+from sys import modules
 from types import FunctionType, ModuleType
-from typing import AsyncGenerator, cast
+from typing import cast
 
 from ..core import Application, Reference
 from ..core.html import HTMLElement
@@ -28,8 +29,10 @@ class Transpiler:
             route_name = f"/{file.relative_to('.').stem}"
 
             if route_name not in self.files:
-                import_module((filename := file.name))
-                for local in (module := cast(ModuleType, eval(route_name))).items():  # nosec: eval is safe here
+                import_module(filename := file.name)
+                for local in (
+                    module := cast(ModuleType, eval(route_name))
+                ).items():  # nosec: eval is safe here
                     if isinstance(local, Page):
                         self.files[route_name] = last_modified_date, local
                         break

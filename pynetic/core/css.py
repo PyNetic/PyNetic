@@ -6,6 +6,7 @@ This is just the listing from the mozilla docs for right now.
 """
 
 from __future__ import annotations
+
 from functools import partial
 from os import PathLike
 from typing import Any, overload
@@ -45,7 +46,7 @@ class Style:
     def __init__(self, css: dict[Any, Any] | str | PathLike | Style) -> None:
         pass
 
-    def render(self) -> "Style":  # type: ignore
+    def render(self) -> Style:  # type: ignore
         pass
 
 

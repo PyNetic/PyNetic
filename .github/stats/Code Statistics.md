@@ -1,4 +1,3 @@
-
 # 📊 Code Statistics for PyNetic
 
 ```mermaid
@@ -29,17 +28,15 @@ pie title Code Distribution
 
 ## 👨‍💻Languages
 
-
-||📝Files|〰️Lines|🗨️Blanks|🙈Comments|👨‍💻Lines of Code|
-| :---: | :---: | :---: | :---: | :---: | :---: |
-|Python|23|1823|134|156|1533|
-|Markdown|7|419|78|0|341|
-|YAML|3|68|0|0|68|
-|SVG|2|38|0|0|38|
-|Dockerfile|1|13|5|0|8|
-|HTML|1|13|0|0|13|
-|License|1|21|4|0|17|
-|TOML|1|82|12|4|66|
-|gitignore|1|138|27|34|77|
-|Total|40|2615|260|194|2161|
-
+|            | 📝Files | 〰️Lines | 🗨️Blanks | 🙈Comments | 👨‍💻Lines of Code |
+| :--------: | :-----: | :-----: | :------: | :--------: | :-------------: |
+|   Python   |   23    |  1823   |   134    |    156     |      1533       |
+|  Markdown  |    7    |   419   |    78    |     0      |       341       |
+|    YAML    |    3    |   68    |    0     |     0      |       68        |
+|    SVG     |    2    |   38    |    0     |     0      |       38        |
+| Dockerfile |    1    |   13    |    5     |     0      |        8        |
+|    HTML    |    1    |   13    |    0     |     0      |       13        |
+|  License   |    1    |   21    |    4     |     0      |       17        |
+|    TOML    |    1    |   82    |    12    |     4      |       66        |
+| gitignore  |    1    |   138   |    27    |     34     |       77        |
+|   Total    |   40    |  2615   |   260    |    194     |      2161       |

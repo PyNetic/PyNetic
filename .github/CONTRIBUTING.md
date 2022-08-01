@@ -8,5 +8,5 @@ To contribute code changes or update the documentation, please follow these step
 4. Make whatever changes and additions you wish and commit these - please try to keep your commit history clean.
 5. Create a pull request to the main repository with an explanation of your changes
 
-Note: The project is not tested at the moment but keep in mind it will be in the future.  Plan for as soon as a mvp
+Note: The project is not tested at the moment but keep in mind it will be in the future. Plan for as soon as a mvp
 has been achieved, testing will begin.

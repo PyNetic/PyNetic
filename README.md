@@ -7,6 +7,7 @@
 # ‼️ Project currently in **development** 💻
 
 #### Please see:
+
 - 📚 Refer to the [PyNetic's Philosophy](Philosophy.md) and [Project Outline](Project%20Outline.md) for information about the project.
 - 🔗 Or visit our [Discord](https://discord.gg/c8VYZnKWdY) for more information and current chat/topics.
 
