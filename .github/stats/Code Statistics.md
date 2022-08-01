@@ -6,11 +6,11 @@
   
 ```mermaid  
 pie title Language Distribution  
-    "📝Files" : 74.21  
-    "〰️Lines" : 12.01  
-    "🗨️Blanks" : 3.60  
-    "🙈Comments" : 1.83  
-    "👨‍💻Lines of Code" : 0.19  
+    "📝Files" : 1545  
+    "〰️Lines" : 250  
+    "🗨️Blanks" : 75  
+    "🙈Comments" : 38  
+    "👨‍💻Lines of Code" : 4  
 ```  
 
 ## 👨‍💻Languages
