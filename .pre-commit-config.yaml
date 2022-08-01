@@ -43,7 +43,3 @@ repos:
       - id: bandit
         exclude: "test_*"
         args: ["-iii", "-ll", "-s=B308,B703"]
-  - repo: https://github.com/ariebovenberg/slotscheck
-    rev: v0.14.1
-    hooks:
-      - id: slotscheck
