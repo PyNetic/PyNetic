@@ -3,7 +3,7 @@ name: lines-of-code
 on:
   push:
     branches: [master, main]
-  pull-request:
+  pull_request:
 
 jobs:
   lines-of-code:
