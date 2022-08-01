@@ -31,7 +31,7 @@ repos:
       - id: codespell
         exclude: >
             (?x)^(
-                .*\.json|\.tox|*.svg
+                .*\.json|\.tox|.*\.svg
             )$
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.12.1
