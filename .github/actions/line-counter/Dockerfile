@@ -2,7 +2,7 @@ FROM python:3.10
 
 RUN apt-get update && \
   apt-get upgrade && \
-  pip install --upgrade pip
+  pip install --no-input --upgrade pip
 
 RUN pip install requests mdutils PyGithub
 
