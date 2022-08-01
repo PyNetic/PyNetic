@@ -77,6 +77,9 @@ line-length = 100
 [tool.isort]
 profile = "black"
 
+[tool.codespell]
+--skip = "*.eps,*.txt"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
