@@ -58,7 +58,7 @@ md_file.new_line()
 
 
 # Updated contents for markdown file
-new_contents = md_file.get_md_text()
+new_contents = re.sub("^\s*$|\s*$", "", md_file.get_md_text())
 
 # Update Readme
 try:
