@@ -34,10 +34,13 @@ md_file.new_header(1, f"📊 Code Statistics for {PROJECT_NAME}")
 for num_languages, language in enumerate(data, 1):
     lang, *_, lines = language
     languages_table.extend(language)
-    language_chart_table[lang] = lines
+
     if lang == "Total":
         lines_chart_table.extend([*_, lines])
+        break
 
+    language_chart_table[lang] = lines
+    
 # Add Languages Pie Chart
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Language Distribution")
