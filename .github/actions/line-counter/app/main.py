@@ -65,7 +65,7 @@ md_file.new_table(columns=6, rows=num_languages + 1, text=languages_table)
 md_file.new_line()
 
 # Updated contents for markdown file
-new_contents = re.sub("\d\s*$", "", md_file.get_md_text(), flags=re.M)[1:]
+new_contents = re.sub("\s*$(?<!\d)", "", md_file.get_md_text(), flags=re.M)[1:]
 
 # Update Readme
 try:
