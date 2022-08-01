@@ -4,7 +4,6 @@ from typing import cast
 from github import Github
 from github.ContentFile import ContentFile
 from github.GithubException import GithubException
-from github.InputGitAuthor import InputGitAuthor
 from mdutils import MdUtils
 import requests
 
@@ -44,13 +43,10 @@ total_loc = sum(loc)
 # Add Pie Chart
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Language Distribution")
-print(f"{KEYS=}")
-print(f"{loc=}")
 for language, lines in zip(KEYS, loc):
     md_file.new_line(f'    "{language}" : {lines}'.rstrip())
 md_file.new_line("```")
 md_file.new_line()
-
 # Languages Table
 md_file.new_header(2, "👨‍💻Languages")
 md_file.new_table(columns=len(LANGUAGES) + 1, rows=6, text=languages_table)
@@ -63,8 +59,6 @@ md_file.new_line()
 
 # Updated contents for markdown file
 new_contents = md_file.get_md_text()
-
-print(new_contents)
 
 # Update Readme
 try:
