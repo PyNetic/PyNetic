@@ -39,7 +39,7 @@ def Center(element: HTMLElement) -> HTMLElement:
     return element.style(
         {
             "display": "inline-block",
-            "text-align": "center"
+            "text-align": "center",
             "::before": {
                 "content": "",
                 "display": "inline-block",
