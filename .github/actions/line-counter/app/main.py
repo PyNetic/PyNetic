@@ -1,10 +1,10 @@
-#from os import environ
+from os import environ
 from typing import cast
 import re
 
-#from github import Github
-#from github.ContentFile import ContentFile
-#from github.GithubException import GithubException
+from github import Github
+from github.ContentFile import ContentFile
+from github.GithubException import GithubException
 from mdutils import MdUtils
 import requests
 
