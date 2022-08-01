@@ -48,21 +48,24 @@ md_file.new_line()
 
 # Add Lines Pie Chart
 md_file.new_line('<div class="right">')
+md_file.new_line()
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Code Distribution")
 for line_type, lines in zip(KEYS, lines_chart_table):
     md_file.new_line(f'    "{line_type}" : {lines}')
 md_file.new_line("```")
+md_file.new_line()
 md_file.new_line("</div>")
 md_file.new_line()
 
 # Languages Table
 md_file.new_header(2, "👨‍💻Languages")
+md_file.new_line()
 md_file.new_table(columns=6, rows=num_languages + 1, text=languages_table)
 md_file.new_line()
 
 # Updated contents for markdown file
-new_contents = re.sub("\s*$", "", md_file.get_md_text(), flags=re.M)[1:]
+new_contents = re.sub("\d\s*$", "", md_file.get_md_text(), flags=re.M)[1:]
 
 # Update Readme
 try:
