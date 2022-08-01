@@ -16,15 +16,13 @@ from any page component using import statements
 """
 
 from __future__ import annotations
+
 from types import CodeType
 from typing import Any, Generic, TypeVar
 
 from .application import Application
 
-__all__ = (
-    "Reference", 
-    "MakeReference"
-)
+__all__ = ("Reference", "MakeReference")
 
 T = TypeVar("T", bound=Any)
 
@@ -32,7 +30,7 @@ T = TypeVar("T", bound=Any)
 # :TODO Finish implementing dunder methods. Unless there's an easier way to do this.
 
 
-class Reference(Generic[T], object):
+class Reference(Generic[T]):
     """Wrapper for a Variable
     This is not necessary to use in development. The suggested way to create a variable is
     using `MakeReference` context manager
@@ -48,7 +46,7 @@ class Reference(Generic[T], object):
     def _propagate_modification_checkpoint(self) -> None:
         """When _var is initially accessed, this function is called.
         Adds the caller's code object to the `_modification_checkpoints` list so pynetic
-        knows the calling function is a reactive function. 
+        knows the calling function is a reactive function.
         Basically binding the object or function to the Reference
         """
         caller = self.self.sys._getframe(2).f_code
@@ -81,19 +79,19 @@ class Reference(Generic[T], object):
 
     def __iadd__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        
+
     def __isub__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        
+
     def __imul__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        
+
     def __ifloordiv__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        
+
     def __itruediv__(self, __other: T) -> None:
         self._add_modification_checkpoint()
-        
+
     def __lt__(self, __other: T) -> bool:
         return True
 
@@ -162,5 +160,6 @@ class ReferenceMaker:
                 raise ValueError(f'Reference name: "{name}" already defined')
 
             Application.references[name] = Reference(value)
+
 
 MakeReference = ReferenceMaker()

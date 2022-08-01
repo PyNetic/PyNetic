@@ -1,10 +1,11 @@
 """Represents a client session"""
 
 from __future__ import annotations
-from pathlib import Path
+
+from collections.abc import Iterator
 from importlib import import_module
+from pathlib import Path
 from types import ModuleType
-from typing import Iterator
 
 from .component import Component
 from .reference import Reference

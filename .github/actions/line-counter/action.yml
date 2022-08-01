@@ -3,8 +3,8 @@ description: "Generates readme file populating the lines of code in the project"
 author: "Justin Bacher <92jbach@gmail.com>"
 inputs:
   github_token:
-    description: 'Default GitHub Action token, used for the PR. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    description: "Default GitHub Action token, used for the PR. Can be passed in using {{ secrets.GITHUB_TOKEN }}"
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"

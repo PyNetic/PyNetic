@@ -3,10 +3,10 @@
 Hot reloads pages on save
 """
 
+import uvicorn
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route
-import uvicorn
 
 
 def application_loop():

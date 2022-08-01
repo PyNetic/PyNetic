@@ -1,5 +1,5 @@
-from pynetic.html import Component, Div, Strong, Input  # type: ignore
 from pynetic.css import CSS  # type: ignore
+from pynetic.html import Component, Div, Input, Strong  # type: ignore
 
 make_blue = CSS(
     {

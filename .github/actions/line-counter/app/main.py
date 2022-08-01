@@ -1,12 +1,12 @@
+import re
 from os import environ
 from typing import cast
-import re
 
+import requests
 from github import Github
 from github.ContentFile import ContentFile
 from github.GithubException import GithubException
 from mdutils import MdUtils
-import requests
 
 REPO_NAME = cast(str, environ.get("GITHUB_REPOSITORY"))
 
@@ -42,7 +42,7 @@ for num_languages, language in enumerate(data, 1):
         break
 
     language_chart_table[lang] = lines
-    
+
 # Add Languages Pie Chart
 md_file.new_line("```mermaid")
 md_file.new_line("pie title Language Distribution")
@@ -70,7 +70,7 @@ md_file.new_table(columns=6, rows=num_languages + 1, text=languages_table)
 md_file.new_line()
 
 # Updated contents for markdown file
-new_contents = re.sub("\s{2}$(?<!\d)", "", md_file.get_md_text(), flags=re.M)[1:]
+new_contents = re.sub(r"\s{2}$(?<!\d)", "", md_file.get_md_text(), flags=re.M)[1:]
 
 # Update Readme
 try:

@@ -1,5 +1,6 @@
 """pynetic core package"""
 
 import html
+
 from .application import Application
-from .reference import Reference, MakeReference
+from .reference import MakeReference, Reference

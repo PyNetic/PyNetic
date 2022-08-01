@@ -7,8 +7,7 @@ With inspiration from Flutter
 
 from enum import Enum
 
-from .html import HTMLElement, Div
-
+from .html import Div, HTMLElement
 
 # An alias for `html.Div` for readability purposes
 Container = Div
@@ -16,16 +15,16 @@ Container = Div
 
 class FlexDirection(Enum):
     """Reference Mozilla
-    
+
     Link:
         https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
     """
-    
+
     # Row
     row = "row"
     vertical = "row"
     top_down = "row"
-    
+
     # Row Reverse
     row_reverse = "row-reverse"
     vertial_reverse = "row-reverse"
@@ -47,13 +46,14 @@ def FlexBox(
     /,
 ) -> Callable[HTMLElement, HTMLElement]:
     """Returns a `Div` with a display of flex
-    
+
     Args:
         direction (FlexDirection): Direction of the resulting Element
-    
+
     Usage:
         TODO
     """
+
     def MakeFlexBox(*elements: str | HTMLElement) -> HTMLElement:
         return Div(
             *elements,
