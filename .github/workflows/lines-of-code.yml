@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
 
-    uses: ./.github/actions/line-counter
-
-    with:
-      github_token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: ./.github/actions/line-counter
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
