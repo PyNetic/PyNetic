@@ -61,7 +61,6 @@ md_file.new_line()
 md_file.new_header(2, "👨‍💻Languages")
 md_file.new_line()
 md_file.new_table(columns=6, rows=num_languages + 1, text=languages_table)
-md_file.new_line()
 
 # Updated contents for markdown file
 # For some reason mdutils insists on putting 2 lines
