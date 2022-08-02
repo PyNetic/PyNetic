@@ -3,7 +3,7 @@
 
 ```mermaid
 pie title Language Distribution
-    "Python" : 1547
+    "Python" : 1546
     "Markdown" : 339
     "YAML" : 70
     "SVG" : 38
@@ -19,10 +19,10 @@ pie title Language Distribution
 ```mermaid
 pie title Code Distribution
     "📝Files" : 40
-    "〰️Lines" : 2682
+    "〰️Lines" : 2681
     "🗨️Blanks" : 310
     "🙈Comments" : 196
-    "👨‍💻Lines of Code" : 2176
+    "👨‍💻Lines of Code" : 2175
 ```
 
 </div>
@@ -32,7 +32,7 @@ pie title Code Distribution
 
 ||📝Files|〰️Lines|🗨️Blanks|🙈Comments|👨‍💻Lines of Code|
 | :---: | :---: | :---: | :---: | :---: | :---: |
-|Python|23|1845|140|158|1547|
+|Python|23|1844|140|158|1546|
 |Markdown|7|459|120|0|339|
 |YAML|3|72|2|0|70|
 |SVG|2|38|0|0|38|
@@ -41,5 +41,4 @@ pie title Code Distribution
 |License|1|21|4|0|17|
 |TOML|1|83|12|4|67|
 |gitignore|1|138|27|34|77|
-|Total|40|2682|310|196|2176|
-
+|Total|40|2681|310|196|2175|
