@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
+from collections.abc import Generator
 from importlib import import_module
 from pathlib import Path
 from types import ModuleType
@@ -13,7 +13,7 @@ from .reference import Reference
 ROUTES_FOLDER = Path().absolute().joinpath("routes")
 
 
-def routes() -> Iterator[ModuleType]:
+def routes() -> Generator[ModuleType, None, None]:
     """Finds, imports and returns the modules in the routes folder"""
     for route_path in ROUTES_FOLDER.glob("*.py"):
         yield import_module(str(route_path))
@@ -37,6 +37,7 @@ class Application:
         self._routes: set[ModuleType] = set()
         self._modules: set[ModuleType] = set()
         self._components: set[Component] = set()
+        self.references: set[Reference] = set()
 
     def build(self) -> str | None:
         """Builds the application for production"""
@@ -50,7 +51,6 @@ class Application:
                 if isinstance(var, Component):
                     self._components.add(var)
 
-        build_code = ""
         imported_modules = self._modules - self._routes
         # TODO: Figure out how to build the CST tree for output
 
