@@ -32,7 +32,7 @@
   - All possible HTML and CSS is dynamically created at Render stage
   - Whatever cannot be rendered will be rendered client side during on_mount
 
-### Also read: [PyNetic's Philosophy]()
+### Also read: [PyNetic's Philosophy](<>)
 
 ---
 
