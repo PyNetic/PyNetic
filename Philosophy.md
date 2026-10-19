@@ -37,7 +37,7 @@ PyNetic will either need to be compiled to JavaScript, or package a Python runti
       - While still in development, this allows for python code to be ran in the browser as if it was natively supported
         - Automatically cached
           - On first load of the page the Pyodide runtime is saved into browser cache. Every other time the page is loaded only the Python environment needs to spin-up
-    - <ins>**[Brython]()**</ins>
+    - <ins>**[Brython](<>)**</ins>
     - The ultimate goal would be that Python be supported by browsers as JavaScript is now. (this is just a pipe dream)
 
 # ❗What PyNetic <ins>IS NOT</ins>
@@ -134,4 +134,5 @@ Although there will be means to include JavaScript into the bundle, and means to
 - (Like References) Event functions are defined at local scope at runtime therefore if a function applies to 2 or more events, they can be imported and used wherever needed.
 
 [^1]: https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
+
 [^2]: https://stackoverflow.com/questions/4362586/sum-a-list-of-numbers-in-python
